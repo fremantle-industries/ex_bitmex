@@ -6,7 +6,9 @@ defmodule ExBitmex.Mixfile do
       app: :ex_bitmex,
       version: "0.0.1",
       elixir: "~> 1.7",
+      package: package(),
       start_permanent: Mix.env() == :prod,
+      description: description(),
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
@@ -35,5 +37,17 @@ defmodule ExBitmex.Mixfile do
       {:ex_unit_notifier, "~> 0.1", only: :test},
       {:excoveralls, "~> 0.10", only: :test}
     ]
+  end
+
+  defp description do
+    "Bitmex API Client for Elixir"
+  end
+
+  defp package do
+    %{
+      licenses: ["MIT"],
+      maintainers: ["Alex Kwiatkowski"],
+      links: %{"GitHub" => "https://github.com/fremantle-capital/ex_bitmex"}
+    }
   end
 end
