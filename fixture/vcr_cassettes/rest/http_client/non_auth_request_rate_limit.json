@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.bitmex.com/api/v1/stats"
+    },
+    "response": {
+      "binary": false,
+      "body": "[{\"rootSymbol\":\"A50\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"ADA\",\"currency\":\"XBt\",\"volume24h\":175389829,\"turnover24h\":171334286459,\"openInterest\":80315909,\"openValue\":79191486274},{\"rootSymbol\":\"BCH\",\"currency\":\"XBt\",\"volume24h\":34883,\"turnover24h\":158408950000,\"openInterest\":49756,\"openValue\":222608344000},{\"rootSymbol\":\"BFX\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"BLOCKS\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"BVOL\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"COIN\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"DAO\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"DASH\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"EOS\",\"currency\":\"XBt\",\"volume24h\":3028283,\"turnover24h\":231581135330,\"openInterest\":1255861,\"openValue\":93260237860},{\"rootSymbol\":\"ETC\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"ETH\",\"currency\":\"XBt\",\"volume24h\":374549272,\"turnover24h\":4506201500595,\"openInterest\":83760564,\"openValue\":1167207562732},{\"rootSymbol\":\"FCT\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"GNO\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"LSK\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"LTC\",\"currency\":\"XBt\",\"volume24h\":167959,\"turnover24h\":137096417000,\"openInterest\":101428,\"openValue\":81649540000},{\"rootSymbol\":\"NEO\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"QTUM\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"REP\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"SEGWIT\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"SNT\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"TRX\",\"currency\":\"XBt\",\"volume24h\":717119828,\"turnover24h\":249953581826,\"openInterest\":156473966,\"openValue\":55391783964},{\"rootSymbol\":\"WIN\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"XBC\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"XBJ\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"XBT\",\"currency\":\"XBt\",\"volume24h\":3043649660,\"turnover24h\":73648350607459,\"openInterest\":428151535,\"openValue\":10392126599407},{\"rootSymbol\":\"XBU\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"XLM\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"XLT\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"XMR\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"XRP\",\"currency\":\"XBt\",\"volume24h\":31066573,\"turnover24h\":285813035412,\"openInterest\":33291601,\"openValue\":304718023953},{\"rootSymbol\":\"XTZ\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"ZEC\",\"currency\":\"XBt\",\"volume24h\":0,\"turnover24h\":0,\"openInterest\":0,\"openValue\":0},{\"rootSymbol\":\"Total\",\"currency\":\"XBt\",\"volume24h\":null,\"turnover24h\":79388739514081,\"openInterest\":null,\"openValue\":12396153578190}]",
+      "headers": {
+        "Date": "Thu, 29 Nov 2018 05:03:17 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "3696",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=jlaLVyLD2ZN5kGyvU373xgT0aOet7hnkgDXu3w+m5J0WK9HLHsqpfKl9h7CIYmm/+ehSTazuIkNEJm9tAVG+q3OuLS/EltLOzuOyKEbaS2sF2MjYTn4mwlLiXNrb; Expires=Thu, 06 Dec 2018 05:03:17 GMT; Path=/",
+        "X-RateLimit-Limit": "150",
+        "X-RateLimit-Remaining": "149",
+        "X-RateLimit-Reset": "1543467798",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"e70-lk+8+WqhVHx+EMdVW/pE7bu7zXY\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

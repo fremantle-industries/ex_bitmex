@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "{\"orderID\":\"44ea65b6-b440-4cee-980e-eed36f37f453\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "api-nonce": "***",
+        "api-key": "***",
+        "api-signature": "***"
+      },
+      "method": "delete",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.bitmex.com/api/v1/order"
+    },
+    "response": {
+      "binary": false,
+      "body": "[{\"orderID\":\"44ea65b6-b440-4cee-980e-eed36f37f453\",\"clOrdID\":\"\",\"clOrdLinkID\":\"\",\"account\":10000,\"symbol\":\"XBTUSD\",\"side\":\"Buy\",\"simpleOrderQty\":null,\"orderQty\":1,\"price\":1,\"displayQty\":null,\"stopPx\":null,\"pegOffsetValue\":null,\"pegPriceType\":\"\",\"currency\":\"USD\",\"settlCurrency\":\"XBt\",\"ordType\":\"Limit\",\"timeInForce\":\"GoodTillCancel\",\"execInst\":\"\",\"contingencyType\":\"\",\"exDestination\":\"XBME\",\"ordStatus\":\"Canceled\",\"triggered\":\"\",\"workingIndicator\":false,\"ordRejReason\":\"\",\"simpleLeavesQty\":null,\"leavesQty\":0,\"simpleCumQty\":null,\"cumQty\":0,\"avgPx\":null,\"multiLegReportingType\":\"SingleSecurity\",\"text\":\"Canceled: Canceled via API.\\nSubmitted via API.\",\"transactTime\":\"2018-11-30T06:28:46.981Z\",\"timestamp\":\"2018-11-30T06:29:27.065Z\"}]",
+      "headers": {
+        "Date": "Fri, 30 Nov 2018 06:29:27 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "733",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=yjzTu9xvWWBVa9dH/YpyEX/UZ1o2rEZGyH5bimOo9bQTszEAm7XiDr8fU+WzuMIxI0dpDzhnNTCDka+Az5HalCFvHglVgP8ck4UoeAa4l+gZYHd1OPmTFd3DRWEz; Expires=Fri, 07 Dec 2018 06:29:27 GMT; Path=/",
+        "X-RateLimit-Limit": "300",
+        "X-RateLimit-Remaining": "299",
+        "X-RateLimit-Reset": "1543386568",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"2dd-b8W/6Lftv4MyT/qrQH3pazuNo2k\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "Content-Type": "application/json",
+        "api-nonce": "***",
+        "api-key": "***",
+        "api-signature": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.bitmex.com/api/v1/order"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"error\":{\"message\":\"Signature not valid.\",\"name\":\"HTTPError\"}}",
+      "headers": {
+        "Date": "Fri, 30 Nov 2018 00:08:18 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "63",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=rE1aJ66ZDsYehdwwKe+B9D92rQUZFgKv0wLjfR53GZGa34GYqVvhqt3jSzXsTiN1Q3lgcfl68afXsLn3SIZ1ztyI9p7Ig3GkcmZXrPMvjPKQGlg+HVCfCqNZTjsw; Expires=Fri, 07 Dec 2018 00:08:18 GMT; Path=/",
+        "ETag": "W/\"3f-dHGPr1ZkYjOYIJiU8wCn0/nue6I\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 401,
+      "type": "ok"
+    }
+  }
+]

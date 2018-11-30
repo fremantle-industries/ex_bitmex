@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "{\"leavesQty\":3,\"orderID\":\"2e10cc61-f94d-4be2-97e0-14669dda2938\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "api-nonce": "***",
+        "api-key": "***",
+        "api-signature": "***"
+      },
+      "method": "put",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.bitmex.com/api/v1/order"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"orderID\":\"2e10cc61-f94d-4be2-97e0-14669dda2938\",\"clOrdID\":\"\",\"clOrdLinkID\":\"\",\"account\":10000,\"symbol\":\"XBTUSD\",\"side\":\"Buy\",\"simpleOrderQty\":null,\"orderQty\":3,\"price\":1,\"displayQty\":null,\"stopPx\":null,\"pegOffsetValue\":null,\"pegPriceType\":\"\",\"currency\":\"USD\",\"settlCurrency\":\"XBt\",\"ordType\":\"Limit\",\"timeInForce\":\"GoodTillCancel\",\"execInst\":\"\",\"contingencyType\":\"\",\"exDestination\":\"XBME\",\"ordStatus\":\"New\",\"triggered\":\"\",\"workingIndicator\":true,\"ordRejReason\":\"\",\"simpleLeavesQty\":null,\"leavesQty\":3,\"simpleCumQty\":null,\"cumQty\":0,\"avgPx\":null,\"multiLegReportingType\":\"SingleSecurity\",\"text\":\"Amended leavesQty: Amended via API.\\nSubmitted via API.\",\"transactTime\":\"2018-11-30T06:06:28.444Z\",\"timestamp\":\"2018-11-30T06:06:28.444Z\"}",
+      "headers": {
+        "Date": "Fri, 30 Nov 2018 06:06:28 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "733",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=gCSuo7oYxQXm+L1pLLj7Ivvy6sXNiOQ4+PURGNyQ37aYnyR4hOuQON4a/pW5Xa8K+Cuu7N6TLje/dc5tO6em1G86hmthLhZ0l2GKKgZJwNkW+lWMXCuzRxOw1nBH; Expires=Fri, 07 Dec 2018 06:06:25 GMT; Path=/",
+        "X-RateLimit-Limit": "300",
+        "X-RateLimit-Remaining": "299",
+        "X-RateLimit-Reset": "1543385186",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"2dd-9AjboBRC4nPcrAFab42ljP5Z3RI\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "{\"orderQty\":1,\"price\":1,\"side\":\"Buy\",\"symbol\":\"XBTUSD\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "api-nonce": "***",
+        "api-key": "***",
+        "api-signature": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.bitmex.com/api/v1/order"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"orderID\":\"2e10cc61-f94d-4be2-97e0-14669dda2938\",\"clOrdID\":\"\",\"clOrdLinkID\":\"\",\"account\":10000,\"symbol\":\"XBTUSD\",\"side\":\"Buy\",\"simpleOrderQty\":null,\"orderQty\":1,\"price\":1,\"displayQty\":null,\"stopPx\":null,\"pegOffsetValue\":null,\"pegPriceType\":\"\",\"currency\":\"USD\",\"settlCurrency\":\"XBt\",\"ordType\":\"Limit\",\"timeInForce\":\"GoodTillCancel\",\"execInst\":\"\",\"contingencyType\":\"\",\"exDestination\":\"XBME\",\"ordStatus\":\"New\",\"triggered\":\"\",\"workingIndicator\":true,\"ordRejReason\":\"\",\"simpleLeavesQty\":null,\"leavesQty\":1,\"simpleCumQty\":null,\"cumQty\":0,\"avgPx\":null,\"multiLegReportingType\":\"SingleSecurity\",\"text\":\"Submitted via API.\",\"transactTime\":\"2018-11-30T05:44:13.218Z\",\"timestamp\":\"2018-11-30T05:44:13.218Z\"}",
+      "headers": {
+        "Date": "Fri, 30 Nov 2018 05:44:13 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "696",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=knu3grqZ3cfTjVKb65WTbGmV2ZsYKfK0yBIvR+ShOaWrW1WLxPKSVwZQoM3IiVXFb7ry3BptWg3jLiUO7eOeU6S3kxhIQ8S2AtLfkSRSZE5237ZZzvd7qwto6SeK; Expires=Fri, 07 Dec 2018 05:44:13 GMT; Path=/",
+        "X-RateLimit-Limit": "300",
+        "X-RateLimit-Remaining": "299",
+        "X-RateLimit-Reset": "1543383854",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"2b8-WoVTQddGWG5vzTTMSdKIY61Rvm8\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

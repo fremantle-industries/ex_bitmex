@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "{\"orderID\":\"a9b0996e-72bf-1db1-0630-483375da71ec\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "api-nonce": "***",
+        "api-key": "***",
+        "api-signature": "***"
+      },
+      "method": "delete",
+      "options": [],
+      "request_body": "",
+      "url": "https://www.bitmex.com/api/v1/stats"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"error\":{\"message\":\"Not Found\",\"name\":\"HTTPError\"}}",
+      "headers": {
+        "Date": "Fri, 30 Nov 2018 06:34:07 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "52",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=X9xHbX3JpxNpelQ7KKtH/9QQazeWaboEY6yb3eWntibU48jD0gIrcFozjtrkD/xulTZWo+vx2IJhXdpFlUepHbg+Wo5h7C1qDdTKLkxtW2q9OjZCRnWDCM6qOTCq; Expires=FRi, 07 Dec 2018 06:34:07 GMT; Path=/",
+        "X-RateLimit-Limit": "300",
+        "X-RateLimit-Remaining": "299",
+        "X-RateLimit-Reset": "1543386848",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"34-RQXM2uXYmuIoWfjaEE+8njrbtb0\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 404,
+      "type": "ok"
+    }
+  }
+]
