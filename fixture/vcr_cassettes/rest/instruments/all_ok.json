@@ -8,7 +8,7 @@
       "method": "get",
       "options": [],
       "request_body": "",
-      "url": "https://www.bitmex.com/api/v1/instrument"
+      "url": "https://testnet.bitmex.com/api/v1/instrument"
     },
     "response": {
       "binary": false,

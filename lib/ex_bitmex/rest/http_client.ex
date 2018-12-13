@@ -25,8 +25,10 @@ defmodule ExBitmex.Rest.HTTPClient do
   @type non_auth_response ::
           {:ok, map | [map], rate_limit} | {:error, non_auth_error_reason, rate_limit | nil}
 
-  @origin Application.get_env(:ex_bitmex, :origin, "https://www.bitmex.com")
+  @rest_protocol Application.get_env(:ex_bitmex, :rest_protocol, "https://")
+  @domain Application.get_env(:ex_bitmex, :domain, "testnet.bitmex.com")
   @api_path Application.get_env(:ex_bitmex, :api_path, "/api/v1")
+  @origin @rest_protocol <> @domain
 
   @spec auth_get(path :: String.t(), credentials, params) :: auth_response
   def auth_get(path, credentials, params) do
@@ -85,10 +87,11 @@ defmodule ExBitmex.Rest.HTTPClient do
     |> send
   end
 
+  @spec domain :: String.t()
+  def domain, do: @domain
+
   @spec url(path :: String.t()) :: String.t()
-  def url(path) do
-    @origin <> @api_path <> path
-  end
+  def url(path), do: @origin <> @api_path <> path
 
   defp send(request) do
     request

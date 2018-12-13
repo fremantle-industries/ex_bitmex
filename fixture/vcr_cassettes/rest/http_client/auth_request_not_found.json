@@ -11,7 +11,7 @@
       "method": "delete",
       "options": [],
       "request_body": "",
-      "url": "https://www.bitmex.com/api/v1/stats"
+      "url": "https://testnet.bitmex.com/api/v1/stats"
     },
     "response": {
       "binary": false,
