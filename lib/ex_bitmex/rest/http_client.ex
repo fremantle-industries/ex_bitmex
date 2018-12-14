@@ -26,7 +26,7 @@ defmodule ExBitmex.Rest.HTTPClient do
           {:ok, map | [map], rate_limit} | {:error, non_auth_error_reason, rate_limit | nil}
 
   @rest_protocol Application.get_env(:ex_bitmex, :rest_protocol, "https://")
-  @domain Application.get_env(:ex_bitmex, :domain, "testnet.bitmex.com")
+  @domain Application.get_env(:ex_bitmex, :domain, "www.bitmex.com")
   @api_path Application.get_env(:ex_bitmex, :api_path, "/api/v1")
   @origin @rest_protocol <> @domain
 

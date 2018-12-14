@@ -1,5 +1,7 @@
 use Mix.Config
 
+config :ex_bitmex, domain: "testnet.bitmex.com"
+
 config :exvcr,
   filter_request_headers: [
     "api-key",
