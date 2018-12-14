@@ -5,10 +5,12 @@ defmodule ExBitmex.Rest.Orders do
   @type order :: ExBitmex.Order.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
   @type auth_error_reason :: Rest.HTTPClient.auth_error_reason()
+  @type create_error_reason ::
+          :timeout | auth_error_reason | {:insufficient_balance, msg :: String.t()}
   @type params :: map
 
   @spec create(credentials, params) ::
-          {:ok, order, rate_limit} | {:error, auth_error_reason, rate_limit | nil}
+          {:ok, order, rate_limit} | {:error, create_error_reason, rate_limit | nil}
   def create(%ExBitmex.Credentials{} = credentials, params) when is_map(params) do
     "/order"
     |> Rest.HTTPClient.auth_post(credentials, params)
@@ -43,6 +45,21 @@ defmodule ExBitmex.Rest.Orders do
   defp parse_response({:ok, data, rate_limit}) when is_map(data) do
     {:ok, order} = data |> to_struct
     {:ok, order, rate_limit}
+  end
+
+  defp parse_response(
+         {:error,
+          {
+            :bad_request,
+            %{
+              "error" => %{
+                "message" => "Account has insufficient Available Balance" <> _ = msg,
+                "name" => "ValidationError"
+              }
+            }
+          }, rate_limit}
+       ) do
+    {:error, {:insufficient_balance, msg}, rate_limit}
   end
 
   defp parse_response({:error, _, _} = error), do: error
