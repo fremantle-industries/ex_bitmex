@@ -6,10 +6,15 @@ defmodule ExBitmex.Rest.Orders do
   @type rate_limit :: ExBitmex.RateLimit.t()
   @type auth_error_reason :: Rest.HTTPClient.auth_error_reason()
   @type params :: map
+  @type error_msg :: String.t()
   @type shared_error_reason :: :timeout | auth_error_reason
-  @type insufficient_balance_error_reason :: {:insufficient_balance, msg :: String.t()}
+  @type insufficient_balance_error_reason :: {:insufficient_balance, error_msg}
+  @type nonce_not_increasing_error_reason :: {:nonce_not_increasing, error_msg}
 
-  @type create_error_reason :: shared_error_reason | insufficient_balance_error_reason
+  @type create_error_reason ::
+          shared_error_reason
+          | insufficient_balance_error_reason
+          | nonce_not_increasing_error_reason
 
   @spec create(credentials, params) ::
           {:ok, order, rate_limit} | {:error, create_error_reason, rate_limit | nil}
@@ -66,6 +71,21 @@ defmodule ExBitmex.Rest.Orders do
           }, rate_limit}
        ) do
     {:error, {:insufficient_balance, msg}, rate_limit}
+  end
+
+  defp parse_response(
+         {:error,
+          {
+            :bad_request,
+            %{
+              "error" => %{
+                "message" => "Nonce is not increasing. This nonce:" <> _ = msg,
+                "name" => "HTTPError"
+              }
+            }
+          }, rate_limit}
+       ) do
+    {:error, {:nonce_not_increasing, msg}, rate_limit}
   end
 
   defp parse_response({:error, _, _} = error), do: error
