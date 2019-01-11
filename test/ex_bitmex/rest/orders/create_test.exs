@@ -1,7 +1,6 @@
 defmodule ExBitmex.Rest.Orders.CreateTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
-  doctest ExBitmex.Rest.Orders
 
   setup_all do
     HTTPoison.start()
@@ -13,8 +12,8 @@ defmodule ExBitmex.Rest.Orders.CreateTest do
     api_secret: System.get_env("BITMEX_SECRET")
   }
 
-  test "returns the order response" do
-    use_cassette "rest/orders/buy_limit_ok" do
+  test ".create returns the order response" do
+    use_cassette "rest/orders/create_buy_limit_ok" do
       assert {:ok, order, _} =
                ExBitmex.Rest.Orders.create(
                  @credentials,
@@ -64,8 +63,8 @@ defmodule ExBitmex.Rest.Orders.CreateTest do
     end
   end
 
-  test "returns an error tuple when there is insufficient balance" do
-    use_cassette "rest/orders/insufficient_balance" do
+  test ".create returns an error tuple when there is insufficient balance" do
+    use_cassette "rest/orders/create_insufficient_balance" do
       assert {:error, {:insufficient_balance, msg}, %ExBitmex.RateLimit{}} =
                ExBitmex.Rest.Orders.create(
                  @credentials,
@@ -78,6 +77,21 @@ defmodule ExBitmex.Rest.Orders.CreateTest do
                )
 
       assert msg =~ "Account has insufficient Available Balance"
+    end
+  end
+
+  test ".create returns an error tuple when there is a timeout" do
+    use_cassette "rest/orders/create_timeout" do
+      assert {:error, :timeout, nil} =
+               ExBitmex.Rest.Orders.create(
+                 @credentials,
+                 %{
+                   symbol: "XBTUSD",
+                   side: "Buy",
+                   orderQty: 1_000_000,
+                   price: 2000
+                 }
+               )
     end
   end
 end

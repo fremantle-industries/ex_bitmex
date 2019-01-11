@@ -5,9 +5,11 @@ defmodule ExBitmex.Rest.Orders do
   @type order :: ExBitmex.Order.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
   @type auth_error_reason :: Rest.HTTPClient.auth_error_reason()
-  @type create_error_reason ::
-          :timeout | auth_error_reason | {:insufficient_balance, msg :: String.t()}
   @type params :: map
+  @type shared_error_reason :: :timeout | auth_error_reason
+  @type insufficient_balance_error_reason :: {:insufficient_balance, msg :: String.t()}
+
+  @type create_error_reason :: shared_error_reason | insufficient_balance_error_reason
 
   @spec create(credentials, params) ::
           {:ok, order, rate_limit} | {:error, create_error_reason, rate_limit | nil}
@@ -17,16 +19,20 @@ defmodule ExBitmex.Rest.Orders do
     |> parse_response
   end
 
+  @type amend_error_reason :: shared_error_reason | insufficient_balance_error_reason
+
   @spec amend(credentials, params) ::
-          {:ok, order, rate_limit} | {:error, auth_error_reason, rate_limit | nil}
+          {:ok, order, rate_limit} | {:error, amend_error_reason, rate_limit | nil}
   def amend(%ExBitmex.Credentials{} = credentials, params) when is_map(params) do
     "/order"
     |> Rest.HTTPClient.auth_put(credentials, params)
     |> parse_response
   end
 
+  @type cancel_error_reason :: shared_error_reason
+
   @spec cancel(credentials, params) ::
-          {:ok, [order], rate_limit} | {:error, auth_error_reason, rate_limit | nil}
+          {:ok, [order], rate_limit} | {:error, cancel_error_reason, rate_limit | nil}
   def cancel(%ExBitmex.Credentials{} = credentials, params) when is_map(params) do
     "/order"
     |> Rest.HTTPClient.auth_delete(credentials, params)

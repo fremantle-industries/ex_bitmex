@@ -60,4 +60,17 @@ defmodule ExBitmex.Rest.Orders.AmendTest do
              }
     end
   end
+
+  test ".amend returns an error tuple when there is a timeout" do
+    use_cassette "rest/orders/amend_timeout" do
+      assert {:error, :timeout, nil} =
+               ExBitmex.Rest.Orders.amend(
+                 @credentials,
+                 %{
+                   orderID: "8d6f2649-7477-4db5-e32a-d8d5bf99dd9b",
+                   leavesQty: 3
+                 }
+               )
+    end
+  end
 end

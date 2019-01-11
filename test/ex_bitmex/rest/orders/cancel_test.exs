@@ -60,4 +60,14 @@ defmodule ExBitmex.Rest.Orders.CancelTest do
              ]
     end
   end
+
+  test ".cancel returns an error tuple when there is a timeout" do
+    use_cassette "rest/orders/cancel_timeout" do
+      assert {:error, timeout, nil} =
+               ExBitmex.Rest.Orders.cancel(
+                 @credentials,
+                 %{orderID: "8d6f2649-7477-4db5-e32a-d8d5bf99dd9b"}
+               )
+    end
+  end
 end
