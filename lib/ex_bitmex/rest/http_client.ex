@@ -8,12 +8,14 @@ defmodule ExBitmex.Rest.HTTPClient do
   @type forbidden :: {:forbidden, message}
   @type unauthorized :: {:unauthorized, message}
   @type service_unavailable :: {:service_unavailable, message}
+  @type nonce_not_increasing :: {:nonce_not_increasing, message}
   @type auth_error_reason ::
           :timeout
           | :not_found
           | bad_request
           | :overloaded
           | service_unavailable
+          | nonce_not_increasing
           | :ip_forbidden
           | forbidden
           | :invalid_signature
