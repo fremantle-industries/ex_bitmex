@@ -75,6 +75,23 @@ defmodule ExBitmex.Rest.HTTPClientTest do
                  )
       end
     end
+
+    test "returns an error tuple when overloaded" do
+      use_cassette "rest/http_client/auth_request_overloaded" do
+        assert {:error, :overloaded, _} =
+                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
+      end
+    end
+
+    test "returns an error tuple when the nonce is not increasing" do
+      use_cassette "rest/http_client/auth_request_nonce_not_increasing" do
+        assert {:error, {:nonce_not_increasing, msg}, _} =
+                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
+
+        assert msg ==
+                 "Nonce is not increasing. This nonce: 62279790258940, last nonce: 62279790258995"
+      end
+    end
   end
 
   describe ".auth_put" do

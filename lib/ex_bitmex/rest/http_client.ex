@@ -3,25 +3,29 @@ defmodule ExBitmex.Rest.HTTPClient do
   @type credentials :: ExBitmex.Credentials.t()
   @type params :: map
   @type rate_limit :: ExBitmex.RateLimit.t()
+  @type message :: String.t()
   @type bad_request :: {:bad_request, error :: map}
-  @type forbidden :: {:forbidden, message :: String.t()}
-  @type ip_forbidden :: :ip_forbidden
-  @type invalid_signature :: :invalid_signature
-  @type unauthorized :: {:unauthorized, message :: String.t()}
+  @type forbidden :: {:forbidden, message}
+  @type unauthorized :: {:unauthorized, message}
+  @type service_unavailable :: {:service_unavailable, message}
   @type auth_error_reason ::
           :timeout
           | :not_found
-          | ip_forbidden
-          | forbidden
-          | invalid_signature
-          | unauthorized
           | bad_request
+          | :overloaded
+          | service_unavailable
+          | :ip_forbidden
+          | forbidden
+          | :invalid_signature
+          | unauthorized
   @type auth_response ::
           {:ok, map | [map], rate_limit} | {:error, auth_error_reason, rate_limit | nil}
   @type non_auth_error_reason ::
           :timeout
           | :not_found
           | bad_request
+          | :overloaded
+          | service_unavailable
   @type non_auth_response ::
           {:ok, map | [map], rate_limit} | {:error, non_auth_error_reason, rate_limit | nil}
 
@@ -172,8 +176,20 @@ defmodule ExBitmex.Rest.HTTPClient do
   end
 
   defp parse_response({:ok, %HTTPoison.Response{status_code: 400, body: body}, rate_limit}) do
-    json = body |> Jason.decode!()
-    reason = {:bad_request, json}
+    json = Jason.decode!(body)
+
+    message =
+      json
+      |> Map.fetch!("error")
+      |> Map.fetch!("message")
+
+    reason =
+      if message =~ "Nonce is not increasing" do
+        {:nonce_not_increasing, message}
+      else
+        {:bad_request, json}
+      end
+
     {:error, reason, rate_limit}
   end
 
@@ -213,6 +229,27 @@ defmodule ExBitmex.Rest.HTTPClient do
 
   defp parse_response({:ok, %HTTPoison.Response{status_code: 404}, rate_limit}) do
     {:error, :not_found, rate_limit}
+  end
+
+  defp parse_response({
+         :ok,
+         %HTTPoison.Response{status_code: 503, body: body},
+         rate_limit
+       }) do
+    message =
+      body
+      |> Jason.decode!()
+      |> Map.fetch!("error")
+      |> Map.fetch!("message")
+
+    reason =
+      if message =~ "The system is currently overloaded" do
+        :overloaded
+      else
+        {:service_unavailable, message}
+      end
+
+    {:error, reason, rate_limit}
   end
 
   defp parse_response({:error, %HTTPoison.Error{reason: "timeout"}, rate_limit}) do

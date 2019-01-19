@@ -94,22 +94,4 @@ defmodule ExBitmex.Rest.Orders.CreateTest do
                )
     end
   end
-
-  test ".create returns an error tuple when the nonce is not increasing" do
-    use_cassette "rest/orders/create_nonce_not_increasing" do
-      assert {:error, {:nonce_not_increasing, msg}, %ExBitmex.RateLimit{}} =
-               ExBitmex.Rest.Orders.create(
-                 @credentials,
-                 %{
-                   symbol: "XBTUSD",
-                   side: "Buy",
-                   orderQty: 1_000_000,
-                   price: 2000
-                 }
-               )
-
-      assert msg ==
-               "Nonce is not increasing. This nonce: 62279790258940, last nonce: 62279790258995"
-    end
-  end
 end

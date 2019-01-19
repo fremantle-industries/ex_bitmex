@@ -72,21 +72,6 @@ defmodule ExBitmex.Rest.Orders do
     {:error, {:insufficient_balance, msg}, rate_limit}
   end
 
-  defp parse_response(
-         {:error,
-          {
-            :bad_request,
-            %{
-              "error" => %{
-                "message" => "Nonce is not increasing. This nonce:" <> _ = msg,
-                "name" => "HTTPError"
-              }
-            }
-          }, rate_limit}
-       ) do
-    {:error, {:nonce_not_increasing, msg}, rate_limit}
-  end
-
   defp parse_response({:error, _, _} = error), do: error
 
   defp to_struct(data) do
