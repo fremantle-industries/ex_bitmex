@@ -10,14 +10,10 @@ defmodule ExBitmex.Ws do
       use WebSockex
       require Logger
 
-      @test_mode Application.get_env(:bitmex, :test_mode)
-      @base "wss://" <> ((@test_mode && "testnet") || "www") <> ".bitmex.com/realtime"
-      @default_subscription ["orderBookL2:XBTUSD"]
-
       ## API
 
       def start_link(args \\ %{}) do
-        subscription = args[:subscribe] || @default_subscription
+        subscription = args[:subscribe] || ["orderBookL2:XBTUSD"]
         auth_subscription = args[:auth_subscribe] || []
 
         state =
@@ -27,7 +23,7 @@ defmodule ExBitmex.Ws do
             heartbeat: 0
           })
 
-        WebSockex.start_link(@base, __MODULE__, state, name: args[:name])
+        WebSockex.start_link(base_uri(), __MODULE__, state, name: args[:name])
       end
 
       ## WebSocket Callbacks
@@ -102,7 +98,7 @@ defmodule ExBitmex.Ws do
           send_after(self(), {:heartbeat, :ping, heartbeat + 1}, 1_000)
           {:ok, state}
         else
-          if not @test_mode do
+          if not test_mode() do
             Logger.warn(
               "#{__MODULE__} sent heartbeat ##{heartbeat} " <> "due to low connectivity"
             )
@@ -166,6 +162,14 @@ defmodule ExBitmex.Ws do
 
       defp output_error(error, state, msg) do
         Logger.error("#{__MODULE__} #{msg}: #{inspect(error)}" <> "\nstate: #{inspect(state)}")
+      end
+
+      defp test_mode do
+        Application.get_env(:bitmex, :test_mode)
+      end
+
+      defp base_uri do
+        "wss://" <> ((test_mode() && "testnet") || "www") <> ".bitmex.com/realtime"
       end
 
       defoverridable handle_response: 2
