@@ -18,6 +18,7 @@ defmodule ExBitmex.WsTest do
       assert :sys.get_state(socket) == %{
                auth_subscribe: [],
                heartbeat: 1,
+               name: WsWrapper,
                subscribe: ["orderBookL2:XBTUSD"]
              }
     end
