@@ -10,7 +10,7 @@ defmodule ExBitmex.Ws do
       use WebSockex
       require Logger
 
-      @test_mode true
+      @test_mode Application.get_env(:bitmex, :test_mode)
       @base "wss://" <> ((@test_mode && "testnet") || "www") <> ".bitmex.com/realtime"
       @default_subscription ["orderBookL2:XBTUSD"]
 
