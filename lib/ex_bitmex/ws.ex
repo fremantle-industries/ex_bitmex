@@ -86,7 +86,7 @@ defmodule ExBitmex.Ws do
         end
 
         if match?([_ | _], auth_subscription) do
-          authenticate(self())
+          authenticate(self(), Map.get(:config))
         end
 
         send_after(self(), {:heartbeat, :ping, 1}, 20_000)
@@ -149,19 +149,11 @@ defmodule ExBitmex.Ws do
         reply_op(server, "subscribe", channels)
       end
 
-      def authenticate(server) do
+      def authenticate(server, config) do
         nonce = ExBitmex.Auth.nonce()
-
-        sig =
-          ExBitmex.Auth.sign(
-            System.get_env("BITMEX_API_SECRET"),
-            "GET",
-            "/realtime",
-            nonce,
-            ""
-          )
-
-        reply_op(server, "authKey", [System.get_env("BITMEX_API_KEY"), nonce, sig])
+        %{api_key: api_key, api_secret: api_secret} = ExBitmex.Credentials.config(config)
+        sig = ExBitmex.Auth.sign(api_secret, "GET", "/realtime", nonce, "")
+        reply_op(server, "authKey", [api_key, nonce, sig])
       end
 
       def handle_response(resp, _state) do
