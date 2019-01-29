@@ -15,12 +15,14 @@ defmodule ExBitmex.WsTest do
 
   describe "initial state" do
     test "get state", %{socket: socket} do
-      assert :sys.get_state(socket) == %{
-               auth_subscribe: [],
-               heartbeat: 1,
-               name: WsWrapper,
-               subscribe: ["orderBookL2:XBTUSD"]
-             }
+      %{
+        auth_subscribe: [],
+        name: WsWrapper,
+        heartbeat: heartbeat,
+        subscribe: ["orderBookL2:XBTUSD"]
+      } = :sys.get_state(socket)
+
+      assert heartbeat != nil
     end
   end
 end
