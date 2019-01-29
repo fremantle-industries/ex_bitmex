@@ -84,7 +84,7 @@ defmodule ExBitmex.Ws do
         end
 
         if match?([_ | _], auth_subscription) do
-          authenticate(self(), Map.get(:config))
+          authenticate(self(), Map.get(state, :config))
         end
 
         send_after(self(), {:heartbeat, :ping, 1}, 20_000)
