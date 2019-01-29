@@ -23,6 +23,14 @@ defmodule ExBitmex.Rest.Orders do
     |> parse_response
   end
 
+  @spec create_bulk(credentials, params) ::
+          {:ok, order, rate_limit} | {:error, create_error_reason, rate_limit | nil}
+  def create_bulk(%ExBitmex.Credentials{} = credentials, params) when is_map(params) do
+    "/order/bulk"
+    |> Rest.HTTPClient.auth_post(credentials, params)
+    |> parse_response
+  end
+
   @type amend_error_reason :: shared_error_reason | insufficient_balance_error_reason
 
   @spec amend(credentials, params) ::
@@ -33,12 +41,28 @@ defmodule ExBitmex.Rest.Orders do
     |> parse_response
   end
 
+  @spec amend_bulk(credentials, params) ::
+          {:ok, order, rate_limit} | {:error, create_error_reason, rate_limit | nil}
+  def amend_bulk(%ExBitmex.Credentials{} = credentials, params) when is_map(params) do
+    "/order/bulk"
+    |> Rest.HTTPClient.auth_put(credentials, params)
+    |> parse_response
+  end
+
   @type cancel_error_reason :: shared_error_reason
 
   @spec cancel(credentials, params) ::
           {:ok, [order], rate_limit} | {:error, cancel_error_reason, rate_limit | nil}
   def cancel(%ExBitmex.Credentials{} = credentials, params) when is_map(params) do
     "/order"
+    |> Rest.HTTPClient.auth_delete(credentials, params)
+    |> parse_response
+  end
+
+  @spec cancel_bulk(credentials, params) ::
+          {:ok, list(order), rate_limit} | {:error, create_error_reason, rate_limit | nil}
+  def cancel_bulk(credentials, params) do
+    "/order/all"
     |> Rest.HTTPClient.auth_delete(credentials, params)
     |> parse_response
   end
