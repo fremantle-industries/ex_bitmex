@@ -137,8 +137,8 @@ defmodule ExBitmex.Ws do
       end
 
       @impl true
-      def terminate({%{message: message}, _}, %{name: name} = _state) do
-        Logger.error("#{name} termiated - #{message} ")
+      def terminate(info, %{name: name} = _state) do
+        Logger.error("#{name} termiated - #{inspect(info)} ")
       end
 
       ## Helpers
