@@ -185,7 +185,7 @@ defmodule ExBitmex.Ws do
         "wss://" <> ((test_mode() && "testnet") || "www") <> ".bitmex.com/realtime"
       end
 
-      defoverridable handle_response: 2
+      defoverridable handle_response: 2, handle_disconnect: 2
     end
   end
 end
