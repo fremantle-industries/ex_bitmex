@@ -31,8 +31,8 @@ defmodule ExBitmex.Ws do
       ## WebSocket Callbacks
 
       @impl true
-      def handle_connect(_conn, state) do
-        Logger.info("#{__MODULE__} connected")
+      def handle_connect(_conn, %{name: name} = state) do
+        Logger.info("#{name} connected")
         send(self(), :ws_subscribe)
         {:ok, state}
       end
@@ -62,8 +62,8 @@ defmodule ExBitmex.Ws do
       end
 
       @impl true
-      def handle_frame(msg, state) do
-        Logger.warn("#{__MODULE__} received unexpected WebSocket response: " <> inspect(msg))
+      def handle_frame(msg, %{name: name} = state) do
+        Logger.warn("#{name} received unexpected WebSocket response: " <> inspect(msg))
         {:ok, state}
       end
 
@@ -136,6 +136,11 @@ defmodule ExBitmex.Ws do
         {:ok, state}
       end
 
+      @impl true
+      def terminate({%{message: message}, _}, %{name: name} = _state) do
+        Logger.error("#{name} termiated - #{message} ")
+      end
+
       ## Helpers
 
       def reply_op(server, op, args) do
@@ -150,8 +155,14 @@ defmodule ExBitmex.Ws do
       def authenticate(server, config) do
         nonce = ExBitmex.Auth.nonce()
         %{api_key: api_key, api_secret: api_secret} = ExBitmex.Credentials.config(config)
-        sig = ExBitmex.Auth.sign(api_secret, "GET", "/realtime", nonce, "")
-        reply_op(server, "authKey", [api_key, nonce, sig])
+
+        if is_nil(api_key) || is_nil(api_secret) do
+          Logger.error("Missing Bitmex API credentials")
+          send(server, :terminate)
+        else
+          sig = ExBitmex.Auth.sign(api_secret, "GET", "/realtime", nonce, "")
+          reply_op(server, "authKey", [api_key, nonce, sig])
+        end
       end
 
       def handle_response(resp, _state) do
