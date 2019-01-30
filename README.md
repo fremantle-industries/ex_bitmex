@@ -19,7 +19,7 @@ end
 Setup Bitmex, set `test_mode` to `true` in test environment. In production set to `false`
 
 ```elixir
-config :bitmex, test_mode: false
+config :ex_bitmex, test_mode: false
 ```
 ## Rest API Usage
 

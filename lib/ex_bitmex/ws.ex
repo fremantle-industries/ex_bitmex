@@ -178,7 +178,7 @@ defmodule ExBitmex.Ws do
       end
 
       defp test_mode do
-        Application.get_env(:bitmex, :test_mode)
+        Application.get_env(:ex_bitmex, :test_mode)
       end
 
       defp base_uri do
