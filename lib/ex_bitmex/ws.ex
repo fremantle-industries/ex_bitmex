@@ -51,8 +51,9 @@ defmodule ExBitmex.Ws do
       @impl true
       def handle_frame({:text, text}, state) do
         case Jason.decode(text) do
-          %{"request" => %{"op" => "authKey"}, "success" => true} ->
+          {:ok, %{"request" => %{"op" => "authKey"}, "success" => true} = payload} ->
             subscribe(self(), state[:auth_subscribe])
+            handle_response(payload, state)
 
           {:ok, payload} ->
             handle_response(payload, state)
