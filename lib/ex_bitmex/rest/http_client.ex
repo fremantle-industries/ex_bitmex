@@ -20,8 +20,9 @@ defmodule ExBitmex.Rest.HTTPClient do
           | forbidden
           | :invalid_signature
           | unauthorized
-  @type auth_response ::
-          {:ok, map | [map], rate_limit} | {:error, auth_error_reason, rate_limit | nil}
+  @type auth_error_response :: {:error, auth_error_reason, rate_limit | nil}
+  @type auth_success_response :: {:ok, map | [map], rate_limit}
+  @type auth_response :: auth_success_response | auth_error_response
   @type non_auth_error_reason ::
           :timeout
           | :not_found
