@@ -9,9 +9,14 @@ defmodule ExBitmex.Rest.HTTPClientTest do
   end
 
   @credentials %ExBitmex.Credentials{
-    api_key: System.get_env("BITMEX_API_KEY"),
-    api_secret: System.get_env("BITMEX_SECRET")
+    api_key: "api_key",
+    api_secret: "api_secret"
   }
+
+  setup do
+    ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes", "fixture/custom_cassettes")
+    :ok
+  end
 
   describe ".auth_request" do
     test "returns the current rate limit" do
@@ -103,6 +108,19 @@ defmodule ExBitmex.Rest.HTTPClientTest do
                    @credentials,
                    %{orderID: "8d6f2649-7477-4db5-e32a-d8d5bf99dd9b", leavesQty: 2}
                  )
+      end
+    end
+
+    test "handles rate limit error" do
+      use_cassette "rest/http_client/auth_request_error_exceeded_rate_limit", custom: true do
+        assert {:error, :exceeded_rate_limit, rate_limit} =
+          ExBitmex.Rest.HTTPClient.auth_put("/order/bulk", @credentials, %{})
+
+        assert rate_limit == %ExBitmex.RateLimit{
+          limit: 300,
+          remaining: 0,
+          reset: 1_549_446_743
+        }
       end
     end
   end
