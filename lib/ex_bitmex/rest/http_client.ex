@@ -236,14 +236,20 @@ defmodule ExBitmex.Rest.HTTPClient do
 
   defp parse_response({
          :ok,
-         %HTTPoison.Response{status_code: 503, body: body},
+         %HTTPoison.Response{status_code: status_code, body: body},
          rate_limit
-       }) do
+       })
+       when status_code in 500..526 do
     message =
-      body
-      |> Jason.decode!()
-      |> Map.fetch!("error")
-      |> Map.fetch!("message")
+      case body |> Jason.decode() do
+        {:ok, decoded_body} ->
+          decoded_body
+          |> Map.fetch!("error")
+          |> Map.fetch!("message")
+
+        {:error, _} ->
+          body
+      end
 
     reason =
       if message =~ "The system is currently overloaded" do

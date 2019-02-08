@@ -88,6 +88,15 @@ defmodule ExBitmex.Rest.HTTPClientTest do
       end
     end
 
+    test "returns an error tuple for 502 status code response" do
+      use_cassette "rest/http_client/auth_request_error_502_bad_gateway", custom: true do
+        assert {:error, {:service_unavailable, message}, nil} =
+                 ExBitmex.Rest.HTTPClient.auth_request(:put, "/order/bulk", @credentials, %{})
+
+        assert message =~ "502 Bad Gateway"
+      end
+    end
+
     test "returns an error tuple when the nonce is not increasing" do
       use_cassette "rest/http_client/auth_request_nonce_not_increasing" do
         assert {:error, {:nonce_not_increasing, msg}, _} =
@@ -114,13 +123,13 @@ defmodule ExBitmex.Rest.HTTPClientTest do
     test "handles rate limit error" do
       use_cassette "rest/http_client/auth_request_error_exceeded_rate_limit", custom: true do
         assert {:error, :exceeded_rate_limit, rate_limit} =
-          ExBitmex.Rest.HTTPClient.auth_put("/order/bulk", @credentials, %{})
+                 ExBitmex.Rest.HTTPClient.auth_put("/order/bulk", @credentials, %{})
 
         assert rate_limit == %ExBitmex.RateLimit{
-          limit: 300,
-          remaining: 0,
-          reset: 1_549_446_743
-        }
+                 limit: 300,
+                 remaining: 0,
+                 reset: 1_549_446_743
+               }
       end
     end
   end
