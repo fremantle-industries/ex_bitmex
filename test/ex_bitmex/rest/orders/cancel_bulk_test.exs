@@ -106,4 +106,14 @@ defmodule ExBitmex.Rest.Orders.CancelBulkTest do
              ]
     end
   end
+
+  test ".cancel_bulk timeout" do
+    use_cassette "rest/orders/cancel_bulk_timeout" do
+      assert {:error, :timeout, _} =
+               ExBitmex.Rest.Orders.cancel_bulk(
+                 @credentials,
+                 %{orders: [%{orderID: "5ba20261-b2dd-ea33-3720-b3211458b49f"}]}
+               )
+    end
+  end
 end
