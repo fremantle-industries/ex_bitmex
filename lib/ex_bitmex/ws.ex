@@ -15,17 +15,30 @@ defmodule ExBitmex.Ws do
       def start_link(args \\ %{}) do
         subscription = args[:subscribe] || ["orderBookL2:XBTUSD"]
         auth_subscription = args[:auth_subscribe] || []
-        name = args[:name] || __MODULE__
+        opts = consturct_opts(args)
 
         state =
-          Map.merge(args, %{
+          args
+          |> Map.merge(%{
             subscribe: subscription,
             auth_subscribe: auth_subscription,
-            heartbeat: 0,
-            name: name
+            heartbeat: 0
           })
+          |> Map.merge(Map.new(opts))
 
-        WebSockex.start_link(base_uri(), __MODULE__, state, name: name)
+        WebSockex.start_link(base_uri(), __MODULE__, state, opts)
+      end
+
+      defp consturct_opts(args) do
+        name = args[:name] || __MODULE__
+
+        debug =
+          case args do
+            %{trace: true} -> [debug: [:trace]]
+            _ -> []
+          end
+
+        [name: name] ++ debug
       end
 
       ## WebSocket Callbacks
