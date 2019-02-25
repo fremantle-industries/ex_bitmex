@@ -92,6 +92,13 @@ defmodule ExBitmex.Rest.HTTPClientTest do
                  "Nonce is not increasing. This nonce: 62279790258940, last nonce: 62279790258995"
       end
     end
+
+    test "returns an error tuple when the request response is a bad gateway" do
+      use_cassette "rest/http_client/auth_request_bad_gateway" do
+        assert {:error, :bad_gateway, _} =
+                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
+      end
+    end
   end
 
   describe ".auth_put" do

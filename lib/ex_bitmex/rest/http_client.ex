@@ -14,6 +14,7 @@ defmodule ExBitmex.Rest.HTTPClient do
           | :not_found
           | bad_request
           | :overloaded
+          | :bad_gateway
           | service_unavailable
           | nonce_not_increasing
           | :ip_forbidden
@@ -230,9 +231,11 @@ defmodule ExBitmex.Rest.HTTPClient do
     {:error, reason, rate_limit}
   end
 
-  defp parse_response({:ok, %HTTPoison.Response{status_code: 404}, rate_limit}) do
-    {:error, :not_found, rate_limit}
-  end
+  defp parse_response({:ok, %HTTPoison.Response{status_code: 404}, rate_limit}),
+    do: {:error, :not_found, rate_limit}
+
+  defp parse_response({:ok, %HTTPoison.Response{status_code: 502}, rate_limit}),
+    do: {:error, :bad_gateway, rate_limit}
 
   defp parse_response({
          :ok,
