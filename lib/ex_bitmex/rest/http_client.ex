@@ -258,7 +258,6 @@ defmodule ExBitmex.Rest.HTTPClient do
     {:error, reason, rate_limit}
   end
 
-  defp parse_response({:error, %HTTPoison.Error{reason: "timeout"}, rate_limit}) do
-    {:error, :timeout, rate_limit}
-  end
+  defp parse_response({:error, %HTTPoison.Error{reason: :timeout}, nil}),
+    do: {:error, :timeout, nil}
 end

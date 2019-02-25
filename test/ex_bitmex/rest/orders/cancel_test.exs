@@ -1,7 +1,7 @@
 defmodule ExBitmex.Rest.Orders.CancelTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
-  doctest ExBitmex.Rest.Orders
+  import Mock
 
   setup_all do
     HTTPoison.start()
@@ -61,13 +61,12 @@ defmodule ExBitmex.Rest.Orders.CancelTest do
     end
   end
 
-  test ".cancel returns an error tuple when there is a timeout" do
-    use_cassette "rest/orders/cancel_timeout" do
-      assert {:error, timeout, nil} =
-               ExBitmex.Rest.Orders.cancel(
-                 @credentials,
-                 %{orderID: "8d6f2649-7477-4db5-e32a-d8d5bf99dd9b"}
-               )
+  test ".cancel bubbles other errors" do
+    with_mock HTTPoison, request: fn _url -> {:error, %HTTPoison.Error{reason: :timeout}} end do
+      assert ExBitmex.Rest.Orders.cancel(
+               @credentials,
+               %{orderID: "8d6f2649-7477-4db5-e32a-d8d5bf99dd9b"}
+             ) == {:error, :timeout, nil}
     end
   end
 end

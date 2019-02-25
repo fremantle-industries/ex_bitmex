@@ -1,6 +1,7 @@
 defmodule ExBitmex.Rest.Orders.CreateTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
+  import Mock
 
   setup_all do
     HTTPoison.start()
@@ -80,18 +81,17 @@ defmodule ExBitmex.Rest.Orders.CreateTest do
     end
   end
 
-  test ".create returns an error tuple when there is a timeout" do
-    use_cassette "rest/orders/create_timeout" do
-      assert {:error, :timeout, nil} =
-               ExBitmex.Rest.Orders.create(
-                 @credentials,
-                 %{
-                   symbol: "XBTUSD",
-                   side: "Buy",
-                   orderQty: 1_000_000,
-                   price: 2000
-                 }
-               )
+  test ".create bubbles other errors" do
+    with_mock HTTPoison, request: fn _url -> {:error, %HTTPoison.Error{reason: :timeout}} end do
+      assert ExBitmex.Rest.Orders.create(
+               @credentials,
+               %{
+                 symbol: "XBTUSD",
+                 side: "Buy",
+                 orderQty: 1_000_000,
+                 price: 2000
+               }
+             ) == {:error, :timeout, nil}
     end
   end
 end

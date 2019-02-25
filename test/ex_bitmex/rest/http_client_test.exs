@@ -1,6 +1,7 @@
 defmodule ExBitmex.Rest.HTTPClientTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
+  import Mock
   doctest ExBitmex.Rest.HTTPClient
 
   setup_all do
@@ -24,6 +25,13 @@ defmodule ExBitmex.Rest.HTTPClientTest do
                  remaining: 299,
                  reset: 1_543_383_854
                }
+      end
+    end
+
+    test "returns an error tuple with no rate limits when the request times out" do
+      with_mock HTTPoison, request: fn _url -> {:error, %HTTPoison.Error{reason: :timeout}} end do
+        assert ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{}) ==
+                 {:error, :timeout, nil}
       end
     end
 
@@ -54,13 +62,6 @@ defmodule ExBitmex.Rest.HTTPClientTest do
       use_cassette "rest/http_client/auth_request_error_invalid_signature" do
         assert {:error, :invalid_signature, nil} =
                  ExBitmex.Rest.HTTPClient.auth_request(:post, "/order", @credentials, %{})
-      end
-    end
-
-    test "returns an error tuple with no rate limits when the request times out" do
-      use_cassette "rest/http_client/auth_request_error_timeout" do
-        assert {:error, :timeout, nil} =
-                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
       end
     end
 
