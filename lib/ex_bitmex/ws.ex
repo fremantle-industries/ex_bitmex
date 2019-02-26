@@ -45,14 +45,14 @@ defmodule ExBitmex.Ws do
 
       @impl true
       def handle_connect(_conn, %{name: name} = state) do
-        Logger.info("#{name} connected")
+        :ok = Logger.info("#{name} connected")
         send(self(), :ws_subscribe)
         {:ok, state}
       end
 
       @impl true
       def handle_disconnect(disconnect_map, state) do
-        Logger.warn("#{__MODULE__} disconnected: #{inspect(disconnect_map)}")
+        :ok = Logger.warn("#{__MODULE__} disconnected: #{inspect(disconnect_map)}")
         {:reconnect, state}
       end
 
@@ -77,7 +77,7 @@ defmodule ExBitmex.Ws do
 
       @impl true
       def handle_frame(msg, %{name: name} = state) do
-        Logger.warn("#{name} received unexpected WebSocket response: " <> inspect(msg))
+        :ok = Logger.warn("#{name} received unexpected WebSocket response: " <> inspect(msg))
         {:ok, state}
       end
 
@@ -115,9 +115,8 @@ defmodule ExBitmex.Ws do
           {:ok, state}
         else
           if not test_mode() do
-            Logger.warn(
-              "#{__MODULE__} sent heartbeat ##{heartbeat} " <> "due to low connectivity"
-            )
+            :ok =
+              Logger.warn("#{__MODULE__} sent heartbeat ##{heartbeat} due to low connectivity")
           end
 
           send_after(self(), {:heartbeat, :pong, heartbeat + 1}, 4_000)
@@ -134,7 +133,7 @@ defmodule ExBitmex.Ws do
           send_after(self(), {:heartbeat, :ping, heartbeat + 1}, 1_000)
           {:ok, state}
         else
-          Logger.warn("#{__MODULE__} terminated due to " <> "no heartbeat ##{heartbeat}")
+          :ok = Logger.warn("#{__MODULE__} terminated due to " <> "no heartbeat ##{heartbeat}")
           {:close, state}
         end
       end
@@ -152,7 +151,7 @@ defmodule ExBitmex.Ws do
 
       @impl true
       def terminate(info, %{name: name} = _state) do
-        Logger.error("#{name} terminated - #{inspect(info)} ")
+        :ok = Logger.error("#{name} terminated - #{inspect(info)} ")
       end
 
       ## Helpers
@@ -171,7 +170,7 @@ defmodule ExBitmex.Ws do
         %{api_key: api_key, api_secret: api_secret} = ExBitmex.Credentials.config(config)
 
         if is_nil(api_key) || is_nil(api_secret) do
-          Logger.error("Missing Bitmex API credentials")
+          :ok = Logger.error("Missing Bitmex API credentials")
           send(server, :terminate)
         else
           sig = ExBitmex.Auth.sign(api_secret, "GET", "/realtime", nonce, "")
@@ -180,7 +179,7 @@ defmodule ExBitmex.Ws do
       end
 
       def handle_response(resp, _state) do
-        Logger.debug("#{__MODULE__} received response: #{inspect(resp)}")
+        :ok = Logger.debug("#{__MODULE__} received response: #{inspect(resp)}")
       end
 
       defp inc_heartbeat(%{heartbeat: heartbeat} = state) do
@@ -188,7 +187,8 @@ defmodule ExBitmex.Ws do
       end
 
       defp output_error(error, state, msg) do
-        Logger.error("#{__MODULE__} #{msg}: #{inspect(error)}" <> "\nstate: #{inspect(state)}")
+        :ok =
+          Logger.error("#{__MODULE__} #{msg}: #{inspect(error)}" <> "\nstate: #{inspect(state)}")
       end
 
       defp test_mode do
