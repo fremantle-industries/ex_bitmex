@@ -12,7 +12,7 @@ by adding `bitmex` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ex_bitmex, "~> 0.0.7"}
+    {:ex_bitmex, "~> 0.0.8"}
   ]
 end
 ```
