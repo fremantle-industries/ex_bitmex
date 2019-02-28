@@ -13,6 +13,7 @@ defmodule ExBitmex.Rest.HTTPClient do
           :timeout
           | :not_found
           | bad_request
+          | :rate_limited
           | :overloaded
           | :bad_gateway
           | service_unavailable
@@ -233,6 +234,9 @@ defmodule ExBitmex.Rest.HTTPClient do
 
   defp parse_response({:ok, %HTTPoison.Response{status_code: 404}, rate_limit}),
     do: {:error, :not_found, rate_limit}
+
+  defp parse_response({:ok, %HTTPoison.Response{status_code: 429}, rate_limit}),
+    do: {:error, :rate_limited, rate_limit}
 
   defp parse_response({:ok, %HTTPoison.Response{status_code: 502}, rate_limit}),
     do: {:error, :bad_gateway, rate_limit}

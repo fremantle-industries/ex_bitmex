@@ -16,7 +16,7 @@ defmodule ExBitmex.Rest.HTTPClientTest do
 
   describe ".auth_request" do
     test "returns the current rate limit" do
-      use_cassette "rest/http_client/auth_request_rate_limit" do
+      use_cassette "rest/http_client/auth_request_with_rate_limit" do
         assert {:ok, _, rate_limit} =
                  ExBitmex.Rest.HTTPClient.auth_request(:post, "/order", @credentials, %{})
 
@@ -100,6 +100,19 @@ defmodule ExBitmex.Rest.HTTPClientTest do
                  ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
       end
     end
+
+    test "returns an error tuple when rate limited" do
+      use_cassette "rest/http_client/auth_request_rate_limited" do
+        assert {:error, :rate_limited, rate_limit} =
+                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
+
+        assert rate_limit == %ExBitmex.RateLimit{
+                 limit: 300,
+                 remaining: 0,
+                 reset: 1_551_300_384
+               }
+      end
+    end
   end
 
   describe ".auth_put" do
@@ -144,7 +157,7 @@ defmodule ExBitmex.Rest.HTTPClientTest do
     end
 
     test "returns the current rate limit" do
-      use_cassette "rest/http_client/non_auth_request_rate_limit" do
+      use_cassette "rest/http_client/non_auth_request_with_rate_limit" do
         assert {:ok, _, rate_limit} =
                  ExBitmex.Rest.HTTPClient.non_auth_request(:get, "/stats", %{})
 
