@@ -11,6 +11,7 @@ defmodule ExBitmex.Rest.HTTPClient do
   @type nonce_not_increasing :: {:nonce_not_increasing, message}
   @type auth_error_reason ::
           :timeout
+          | :connect_timeout
           | :not_found
           | bad_request
           | :rate_limited
@@ -264,4 +265,7 @@ defmodule ExBitmex.Rest.HTTPClient do
 
   defp parse_response({:error, %HTTPoison.Error{reason: :timeout}, nil}),
     do: {:error, :timeout, nil}
+
+  defp parse_response({:error, %HTTPoison.Error{reason: :connect_timeout}, nil}),
+    do: {:error, :connect_timeout, nil}
 end

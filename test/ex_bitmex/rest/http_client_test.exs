@@ -35,6 +35,14 @@ defmodule ExBitmex.Rest.HTTPClientTest do
       end
     end
 
+    test "returns an error tuple with no rate limits when the request has a connect timeout" do
+      with_mock HTTPoison,
+        request: fn _url -> {:error, %HTTPoison.Error{reason: :connect_timeout}} end do
+        assert ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{}) ==
+                 {:error, :connect_timeout, nil}
+      end
+    end
+
     test "returns an error tuple when the params are invalid" do
       use_cassette "rest/http_client/auth_request_error_bad_request" do
         assert {:error, reason, _} =
