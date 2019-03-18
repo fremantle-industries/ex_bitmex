@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+        "body": "{\"orders\":[{\"orderID\":\"0c9223c2-b923-4599-ede7-d01adf51c655\",\"orderQty\":100,\"price\":3385.5},{\"orderID\":\"b4432a2b-0061-1b9d-9862-6cb8247aebbc\",\"orderQty\":100,\"price\":3382.0}]}",
+      "headers": {
+        "Content-Type": "application/json",
+        "api-nonce": "***",
+        "api-key": "***",
+        "api-signature": "***"
+      },
+      "method": "put",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.bitmex.com/api/v1/order/bulk"
+    },
+    "response": {
+      "binary": false,
+      "body": "<html>\r\n<head><title>403 Forbidden</title></head>\r\n<body bgcolor=\"white\">\r\n<center><h1>403 Forbidden</h1></center>\r\n</body>\r\n</html>\r\n",
+      "headers": {
+        "Server": "awselb/2.0",
+        "Date": "Thu, 07 Feb 2019 10:42:12 GMT",
+        "Content-Type": "text/html",
+        "Content-Length": "138",
+        "Connection": "keep-alive"
+      },
+      "status_code": 403,
+      "type": "ok"
+    }
+  }
+]

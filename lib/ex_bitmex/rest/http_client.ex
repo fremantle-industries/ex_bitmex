@@ -20,6 +20,7 @@ defmodule ExBitmex.Rest.HTTPClient do
           | forbidden
           | :invalid_signature
           | unauthorized
+          | :banned
   @type auth_error_response :: {:error, auth_error_reason, rate_limit | nil}
   @type auth_success_response :: {:ok, map | [map], rate_limit}
   @type auth_response :: auth_success_response | auth_error_response
@@ -214,17 +215,16 @@ defmodule ExBitmex.Rest.HTTPClient do
   end
 
   defp parse_response({:ok, %HTTPoison.Response{status_code: 403, body: body}, rate_limit}) do
-    message =
-      body
-      |> Jason.decode!()
-      |> Map.fetch!("error")
-      |> Map.fetch!("message")
-
     reason =
-      if message == "This IP address is not allowed to use this key." do
-        :ip_forbidden
-      else
-        {:forbidden, message}
+      case Jason.decode(body) do
+        {:ok, decoded_body} ->
+          decoded_body
+          |> Map.fetch!("error")
+          |> Map.fetch!("message")
+          |> get_403_error_reason()
+
+        {:error, _reason} ->
+          :banned
       end
 
     {:error, reason, rate_limit}
@@ -265,11 +265,23 @@ defmodule ExBitmex.Rest.HTTPClient do
     {:error, :exceeded_rate_limit, rate_limit}
   end
 
+  defp parse_response({:ok, %HTTPoison.Response{status_code: 403}, rate_limit}) do
+    {:error, :forbidden, rate_limit}
+  end
+
   defp parse_response({:error, %HTTPoison.Error{reason: "timeout"}, rate_limit}) do
     {:error, :timeout, rate_limit}
   end
 
   defp parse_response({:error, %HTTPoison.Error{reason: :timeout}, nil}) do
     {:error, :timeout, nil}
+  end
+
+  defp get_403_error_reason(message) do
+    if message == "This IP address is not allowed to use this key." do
+      :ip_forbidden
+    else
+      {:forbidden, message}
+    end
   end
 end

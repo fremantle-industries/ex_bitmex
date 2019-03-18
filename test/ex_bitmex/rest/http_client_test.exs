@@ -97,6 +97,13 @@ defmodule ExBitmex.Rest.HTTPClientTest do
       end
     end
 
+    test "returns an error tuple for 403 status code response with html body" do
+      use_cassette "rest/http_client/auth_request_error_403_forbidden", custom: true do
+        assert {:error, :banned, nil} =
+          ExBitmex.Rest.HTTPClient.auth_request(:put, "/order/bulk", @credentials, %{})
+      end
+    end
+
     test "returns an error tuple when the nonce is not increasing" do
       use_cassette "rest/http_client/auth_request_nonce_not_increasing" do
         assert {:error, {:nonce_not_increasing, msg}, _} =
