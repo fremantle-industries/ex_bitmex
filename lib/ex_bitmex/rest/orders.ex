@@ -67,6 +67,20 @@ defmodule ExBitmex.Rest.Orders do
     |> parse_response
   end
 
+  @spec get(credentials, params) ::
+          {:ok, list(order), rate_limit} | {:error, create_error_reason, rate_limit | nil}
+  @doc """
+  Returns orders.
+
+  https://www.bitmex.com/api/explorer/#!/Order/Order_getOrders
+  """
+  def get(%ExBitmex.Credentials{} = credentials, params \\ %{}) when is_map(params) do
+    "/order?"
+    |> Kernel.<>(ExBitmex.URI.encode_query(params))
+    |> ExBitmex.Rest.HTTPClient.auth_get(credentials, %{})
+    |> parse_response()
+  end
+
   defp parse_response({:ok, data, rate_limit}) when is_list(data) do
     orders =
       data
