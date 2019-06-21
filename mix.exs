@@ -37,7 +37,8 @@ defmodule ExBitmex.Mixfile do
       {:mock, "~> 0.3.0", only: :test},
       {:exvcr, "~> 0.10.0", only: [:dev, :test]},
       {:ex_unit_notifier, "~> 0.1", only: :test},
-      {:excoveralls, "~> 0.10", only: :test}
+      {:excoveralls, "~> 0.10", only: :test},
+      {:websockex, "~> 0.4.0"}
     ]
   end
 
