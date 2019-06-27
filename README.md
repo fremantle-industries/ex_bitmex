@@ -21,3 +21,16 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/bitmex](https://hexdocs.pm/bitmex).
 
+## WebSocket
+
+Create a WebSocket wrapper with a handler
+
+```elixir
+defmodule BitMexWebSocketWrapper do
+  use ExBitmex.WebSocket
+
+  def handle_response(json, _state) do
+    Logger.warn("Received #{inspect(json)}")
+  end
+end
+```
