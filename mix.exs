@@ -32,7 +32,7 @@ defmodule ExBitmex.Mixfile do
       {:jason, "~> 1.1.0"},
       {:mapail, "~> 1.0.2"},
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
+      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false},
       {:mix_test_watch, "~> 0.8", only: :dev, runtime: false},
       {:mock, "~> 0.3.0", only: :test},
       {:exvcr, "~> 0.10.0", only: [:dev, :test]},
@@ -43,7 +43,7 @@ defmodule ExBitmex.Mixfile do
   end
 
   defp description do
-    "Bitmex API Client for Elixir"
+    "BitMEX API Client for Elixir"
   end
 
   defp package do
