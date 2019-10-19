@@ -17,4 +17,11 @@ defmodule ExBitmex.Rest.InstrumentsTest do
       assert instrument.taker_fee != nil
     end
   end
+
+  test ".all can use query params" do
+    use_cassette "rest/instruments/all_with_params_ok" do
+      assert {:ok, instruments, _} = ExBitmex.Rest.Instruments.all(%{start: 0, count: 1})
+      assert Enum.count(instruments) == 1
+    end
+  end
 end

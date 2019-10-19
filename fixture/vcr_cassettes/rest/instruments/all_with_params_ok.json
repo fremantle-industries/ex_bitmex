@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "{\"count\":1,\"start\":0}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.bitmex.com/api/v1/instrument"
+    },
+    "response": {
+      "binary": false,
+      "body": "[{\"symbol\":\"XBTU14\",\"rootSymbol\":\"XBT\",\"state\":\"Settled\",\"typ\":\"FXXXS\",\"listing\":\"2014-09-12T12:00:00.000Z\",\"front\":\"2014-08-29T12:00:00.000Z\",\"expiry\":\"2014-09-26T12:00:00.000Z\",\"settle\":\"2014-09-26T12:00:00.000Z\",\"relistInterval\":null,\"inverseLeg\":\"\",\"sellLeg\":\"\",\"buyLeg\":\"\",\"optionStrikePcnt\":null,\"optionStrikeRound\":null,\"optionStrikePrice\":null,\"optionMultiplier\":null,\"positionCurrency\":\"\",\"underlying\":\"XBT\",\"quoteCurrency\":\"USD\",\"underlyingSymbol\":\"XBT=\",\"reference\":\"BMEX\",\"referenceSymbol\":\".XBT2H\",\"calcInterval\":null,\"publishInterval\":null,\"publishTime\":null,\"maxOrderQty\":10000000,\"maxPrice\":1000000,\"lotSize\":1,\"tickSize\":0.01,\"multiplier\":1000,\"settlCurrency\":\"XBt\",\"underlyingToPositionMultiplier\":null,\"underlyingToSettleMultiplier\":100000000,\"quoteToSettleMultiplier\":null,\"isQuanto\":true,\"isInverse\":false,\"initMargin\":0.3,\"maintMargin\":0.2,\"riskLimit\":5000000000,\"riskStep\":5000000000,\"limit\":0.2,\"capped\":false,\"taxed\":false,\"deleverage\":false,\"makerFee\":0.00005,\"takerFee\":0.00005,\"settlementFee\":0.00005,\"insuranceFee\":0.00015,\"fundingBaseSymbol\":\"\",\"fundingQuoteSymbol\":\"\",\"fundingPremiumSymbol\":\"\",\"fundingTimestamp\":null,\"fundingInterval\":null,\"fundingRate\":null,\"indicativeFundingRate\":null,\"rebalanceTimestamp\":null,\"rebalanceInterval\":null,\"openingTimestamp\":\"2014-09-26T12:00:00.000Z\",\"closingTimestamp\":\"2014-09-26T12:00:00.000Z\",\"sessionInterval\":\"2000-01-01T08:00:00.000Z\",\"prevClosePrice\":406.39,\"limitDownPrice\":325.11,\"limitUpPrice\":487.67,\"bankruptLimitDownPrice\":null,\"bankruptLimitUpPrice\":null,\"prevTotalVolume\":62491,\"totalVolume\":64021,\"volume\":0,\"volume24h\":0,\"prevTotalTurnover\":0,\"totalTurnover\":0,\"turnover\":0,\"turnover24h\":0,\"homeNotional24h\":0,\"foreignNotional24h\":0,\"prevPrice24h\":400.44,\"vwap\":null,\"highPrice\":null,\"lowPrice\":null,\"lastPrice\":400.44,\"lastPriceProtected\":400.44,\"lastTickDirection\":\"MinusTick\",\"lastChangePcnt\":0,\"bidPrice\":null,\"midPrice\":null,\"askPrice\":null,\"impactBidPrice\":null,\"impactMidPrice\":null,\"impactAskPrice\":null,\"hasLiquidity\":false,\"openInterest\":0,\"openValue\":0,\"fairMethod\":\"\",\"fairBasisRate\":null,\"fairBasis\":0,\"fairPrice\":400.44,\"markMethod\":\"LastPrice\",\"markPrice\":400.44,\"indicativeTaxRate\":null,\"indicativeSettlePrice\":400.44,\"optionUnderlyingPrice\":null,\"settledPrice\":400.44,\"timestamp\":\"2014-09-12T16:10:19.504Z\"}]",
+      "headers": {
+        "Date": "Sat, 19 Oct 2019 18:07:54 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "2309",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=6deFc/s0ZuaCaAWUq1onNqBJtrAxwg4tADK0lt94OWjm9ypI5/HxtUnhgGXfkJc+MOwm/7JqKOBq2Cnh7XTwCkwn3mXuissozgcXIaJAiraX8m9KNEHLtSIcRLfv; Expires=Sat, 26 Oct 2019 18:07:54 GMT; Path=/",
+        "X-RateLimit-Limit": "30",
+        "X-RateLimit-Remaining": "29",
+        "X-RateLimit-Reset": "1571508475",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"905-FH9gDHu8gHMW2yr28Xabzt2pEoQ\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
