@@ -4,8 +4,9 @@ defmodule ExBitmex.Rest.Instruments do
   @type params :: map
   @type instrument :: ExBitmex.Instrument.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
+  @type error_reason :: term
 
-  @spec all(params) :: {:ok, [instrument], rate_limit}
+  @spec all(params) :: {:ok, [instrument], rate_limit} | {:error, error_reason, rate_limit | nil}
   def all(params \\ %{}) do
     "/instrument"
     |> Rest.HTTPClient.non_auth_get(params)
@@ -20,6 +21,8 @@ defmodule ExBitmex.Rest.Instruments do
 
     {:ok, instruments, rate_limit}
   end
+
+  defp parse_response({:error, _, _} = error), do: error
 
   defp to_struct(data) do
     data
