@@ -10,7 +10,11 @@ defmodule ExBitmex.Rest.InstrumentsTest do
 
   test ".all returns a list of instruments" do
     use_cassette "rest/instruments/all_ok" do
-      assert {:ok, [%{"takerFee" => _} | _], _} = ExBitmex.Rest.Instruments.all()
+      assert {:ok, instruments, _} = ExBitmex.Rest.Instruments.all()
+      assert Enum.any?(instruments) == true
+      assert %ExBitmex.Instrument{} = instrument = instruments |> hd()
+      assert instrument.turnover24h != nil
+      assert instrument.taker_fee != nil
     end
   end
 end

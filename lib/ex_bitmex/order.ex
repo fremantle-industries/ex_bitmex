@@ -1,7 +1,7 @@
 defmodule ExBitmex.Order do
-  @type t :: %ExBitmex.Order{
-          side: String.t()
-        }
+  alias __MODULE__
+
+  @type t :: %Order{side: String.t()}
 
   defstruct ~w(
     side
