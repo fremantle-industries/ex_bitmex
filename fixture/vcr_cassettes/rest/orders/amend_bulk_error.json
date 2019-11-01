@@ -1,0 +1,70 @@
+[
+  {
+    "request": {
+      "body": "{\"execInst\":\"ParticipateDoNotInitiate\",\"ordTypes\":\"Limit\",\"orderQty\":1000,\"price\":8000,\"side\":\"Buy\",\"symbol\":\"XBTUSD\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "api-nonce": "***",
+        "api-key": "***",
+        "api-signature": "***"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.bitmex.com/api/v1/order"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"orderID\":\"1d4a140b-6738-284e-8bde-a894ed9cfea4\",\"clOrdID\":\"\",\"clOrdLinkID\":\"\",\"account\":137429,\"symbol\":\"XBTUSD\",\"side\":\"Buy\",\"simpleOrderQty\":null,\"orderQty\":1000,\"price\":8000,\"displayQty\":null,\"stopPx\":null,\"pegOffsetValue\":null,\"pegPriceType\":\"\",\"currency\":\"USD\",\"settlCurrency\":\"XBt\",\"ordType\":\"Limit\",\"timeInForce\":\"GoodTillCancel\",\"execInst\":\"ParticipateDoNotInitiate\",\"contingencyType\":\"\",\"exDestination\":\"XBME\",\"ordStatus\":\"New\",\"triggered\":\"\",\"workingIndicator\":true,\"ordRejReason\":\"\",\"simpleLeavesQty\":null,\"leavesQty\":1000,\"simpleCumQty\":null,\"cumQty\":0,\"avgPx\":null,\"multiLegReportingType\":\"SingleSecurity\",\"text\":\"Submitted via API.\",\"transactTime\":\"2019-10-31T05:32:45.912Z\",\"timestamp\":\"2019-10-31T05:32:45.912Z\"}",
+      "headers": {
+        "Date": "Thu, 31 Oct 2019 05:32:45 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "730",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=lrcd1tsWVjQkqW3EK1aX3SxoGfv0HPzRjzYnhACDjQXaDyIaAUZ38imWBhsHe7YwtBWsEI3ItMtKE2ldD5BJzDIE+nrymURDBMg45xK2JXhZ0HQg6EYpP+lP4ugB; Expires=Thu, 07 Nov 2019 05:32:45 GMT; Path=/",
+        "X-RateLimit-Limit": "60",
+        "X-RateLimit-Remaining": "59",
+        "X-RateLimit-Reset": "1572499966",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"2da-ftzUgmcU2KCHPk5kPkujMlZAjZo\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "{\"orders\":[{\"orderID\":\"1d4a140b-6738-284e-8bde-a894ed9cfea4\",\"price\":10000},{\"leavesQty\":500,\"orderID\":\"missing-order-id\"}]}",
+      "headers": {
+        "Content-Type": "application/json",
+        "api-nonce": "***",
+        "api-key": "***",
+        "api-signature": "***"
+      },
+      "method": "put",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.bitmex.com/api/v1/order/bulk"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"error\":{\"message\":\"Invalid orderID\",\"name\":\"HTTPError\"}}",
+      "headers": {
+        "Date": "Thu, 31 Oct 2019 05:32:46 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "58",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=AfWGoUxEijaZaMqMDueWVxOznFZguG5pRKLlvyTV2HzwCF6OlleR1STI3dKqSF4QvBzl3YCjtK8LWeEPcGn0kUpYx8xN2Sm9RJ46p/t4+tVAc288t94fzwZBm20p; Expires=Thu, 07 Nov 2019 05:32:46 GMT; Path=/",
+        "X-RateLimit-Limit": "60",
+        "X-RateLimit-Remaining": "58",
+        "X-RateLimit-Reset": "1572499967",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"3a-aE1X9krIb0CsjOWY4m6/3nXwP+4\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]

@@ -26,6 +26,14 @@ defmodule ExBitmex.Rest.Orders do
     |> parse_response
   end
 
+  @spec amend_bulk(credentials, params) ::
+          {:ok, list(order), rate_limit} | {:error, amend_error_reason, rate_limit | nil}
+  def amend_bulk(%ExBitmex.Credentials{} = credentials, params) when is_map(params) do
+    "/order/bulk"
+    |> Rest.HTTPClient.auth_put(credentials, params)
+    |> parse_response
+  end
+
   @spec cancel(credentials, params) ::
           {:ok, [order], rate_limit} | {:error, auth_error_reason, rate_limit | nil}
   def cancel(%ExBitmex.Credentials{} = credentials, params) when is_map(params) do
