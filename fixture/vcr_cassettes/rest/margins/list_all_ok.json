@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "{\"currency\":\"all\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "api-nonce": "***",
+        "api-key": "***",
+        "api-signature": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.bitmex.com/api/v1/user/margin"
+    },
+    "response": {
+      "binary": false,
+      "body": "[{\"account\":256112,\"currency\":\"XBt\",\"riskLimit\":1000000000000,\"prevState\":\"\",\"state\":\"\",\"action\":\"\",\"amount\":1000131,\"pendingCredit\":0,\"pendingDebit\":0,\"confirmedDebit\":0,\"prevRealisedPnl\":-62,\"prevUnrealisedPnl\":0,\"grossComm\":26,\"grossOpenCost\":0,\"grossOpenPremium\":0,\"grossExecCost\":0,\"grossMarkValue\":11408,\"riskValue\":11408,\"taxableMargin\":0,\"initMargin\":0,\"maintMargin\":117,\"sessionMargin\":0,\"targetExcessMargin\":0,\"varMargin\":0,\"realisedPnl\":-26,\"unrealisedPnl\":-626,\"indicativeTax\":0,\"unrealisedProfit\":0,\"syntheticMargin\":null,\"walletBalance\":1000105,\"marginBalance\":999479,\"marginBalancePcnt\":1,\"marginLeverage\":0.011413946666213096,\"marginUsedPcnt\":0.0001,\"excessMargin\":999362,\"excessMarginPcnt\":1,\"availableMargin\":999362,\"withdrawableMargin\":999362,\"timestamp\":\"2019-11-12T19:12:50.502Z\",\"grossLastValue\":11408,\"commission\":null}]",
+      "headers": {
+        "Date": "Tue, 12 Nov 2019 19:13:18 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "843",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=SNvcP2bCKGI7sovTKdjRoD8Nddrrm94R7RIDuDZ6I6gduYxgav2Fq3s7FFv3y47TX25SQK326XQbAxOAB13YSv/kddb1hYqbJPB9Mj5Suu+2ZG6vZ82kBIJe7oup; Expires=Tue, 19 Nov 2019 19:13:18 GMT; Path=/",
+        "X-RateLimit-Limit": "60",
+        "X-RateLimit-Remaining": "59",
+        "X-RateLimit-Reset": "1573585999",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"34b-zJ9LW5beIsOReUZ6SYKijI723vQ\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
