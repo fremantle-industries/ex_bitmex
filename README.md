@@ -1,5 +1,5 @@
 # ExBitmex
-[![CircleCI](https://circleci.com/gh/fremantle-capital/ex_bitmex.svg?style=svg)](https://circleci.com/gh/fremantle-capital/ex_bitmex)
+![](https://github.com/fremantle-capital/ex_bitmex/workflows/.github/workflows/test.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/fremantle-capital/ex_bitmex/badge.svg?branch=master)](https://coveralls.io/github/fremantle-capital/ex_bitmex?branch=master)
 
 BitMEX API Client for Elixir
