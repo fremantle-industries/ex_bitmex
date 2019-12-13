@@ -1,0 +1,39 @@
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
+
+    strategy:
+      matrix:
+        otp: [21.x, 22.x]
+        elixir: [1.7.x, 1.8.x, 1.9.x]
+
+    steps:
+      - uses: actions/checkout@v1.0.0
+
+      - uses: actions/setup-elixir@v1.1.0
+        with:
+          otp-version: ${{matrix.otp}}
+          elixir-version: ${{matrix.elixir}}
+
+      - uses: actions/cache@v1
+        with:
+          path: _build/dev
+          key: dialyzer-plt-elixir-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-${{hashFiles('mix.lock')}}-${{github.ref}}
+          restore-keys: |
+            dialyzer-plt-elixir-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-${{hashFiles('mix.lock')}}-${{github.ref}}
+            dialyzer-plt-elixir-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-${{hashFiles('mix.lock')}}-
+
+      - name: Install Dependencies
+        run: mix deps.get
+
+      - name: Test
+        env:
+          BITMEX_API_KEY: ${{secrets.BITMEX_API_KEY}}
+          BITMEX_SECRET: ${{secrets.BITMEX_SECRET}}
+        run: mix test
+
+      - name: Dialyzer
+        run: mix dialyzer --halt-exit-status
