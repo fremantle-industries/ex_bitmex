@@ -14,18 +14,9 @@ defmodule ExBitmex.Rest.User.AffiliateStatus do
     |> parse_response
   end
 
-  defp parse_response({:ok, data, rate_limit}) when is_list(data) do
-    positions =
-      data
-      |> Enum.map(&to_struct/1)
-      |> Enum.map(fn {:ok, p} -> p end)
-
-    {:ok, positions, rate_limit}
-  end
-
   defp parse_response({:ok, data, rate_limit}) when is_map(data) do
-    {:ok, order} = data |> to_struct
-    {:ok, order, rate_limit}
+    {:ok, affiliate_status} = data |> to_struct
+    {:ok, affiliate_status, rate_limit}
   end
 
   defp parse_response({:error, _, _} = error), do: error
