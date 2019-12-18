@@ -1,6 +1,7 @@
 defmodule ExBitmex.Rest.Position.IndexTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
+  import Mock
   alias ExBitmex.Rest.Position
   doctest ExBitmex.Rest.Position.Index
 
@@ -18,6 +19,12 @@ defmodule ExBitmex.Rest.Position.IndexTest do
     use_cassette "rest/position/index_ok" do
       assert {:ok, positions, _} = Position.Index.get(@credentials)
       assert [%ExBitmex.Position{} | _] = positions
+    end
+  end
+
+  test ".get bubbles errors without the rate limit" do
+    with_mock HTTPoison, request: fn _url -> {:error, %HTTPoison.Error{reason: :timeout}} end do
+      assert {:error, :timeout, nil} = Position.Index.get(@credentials)
     end
   end
 end
