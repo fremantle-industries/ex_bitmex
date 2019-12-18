@@ -14,7 +14,7 @@ defmodule ExBitmex.Rest.Position.IndexTest do
     api_secret: System.get_env("BITMEX_SECRET")
   }
 
-  test ".all returns a list of positions" do
+  test ".get returns a list of positions" do
     use_cassette "rest/position/index_ok" do
       assert {:ok, positions, _} = Position.Index.get(@credentials)
       assert [%ExBitmex.Position{} | _] = positions
