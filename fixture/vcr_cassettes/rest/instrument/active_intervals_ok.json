@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.bitmex.com/api/v1/instrument/activeIntervals"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"intervals\":[\"ETH:quarterly\",\"ETH:perpetual\",\"XBT:quarterly\",\"XBT:biquarterly\",\"XBT:perpetual\",\"XBJ:perpetual\",\"XBK:perpetual\",\"LTC:quarterly\",\"XRP:quarterly\",\"BCH:quarterly\",\"ADA:quarterly\",\"EOS:quarterly\",\"TRX:quarterly\"],\"symbols\":[\"ETHZ19\",\"ETHXBT\",\"XBTZ19\",\"XBTH20\",\"XBTUSD\",\"XBTJPY\",\"XBTKRW\",\"LTCZ19\",\"XRPZ19\",\"BCHZ19\",\"ADAZ19\",\"EOSZ19\",\"TRXZ19\"]}",
+      "headers": {
+        "Date": "Wed, 18 Dec 2019 02:02:26 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "354",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=4HMRplr+gA1RiyX4F+r5cH4CLiSXXNHyvUk+OmOVLLBK0cY5BRWgo4AO1rdmVvikFY3sdB/PSvbyJjH0isOThEbH/rdKlMCP+ekiPgBXl7oQTeJasjhO/5P+Sfr0; Expires=Wed, 25 Dec 2019 02:02:26 GMT; Path=/",
+        "X-RateLimit-Limit": "30",
+        "X-RateLimit-Remaining": "29",
+        "X-RateLimit-Reset": "1576634547",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"162-QE7DBCP8Sk/mxLgM2UpxwZQGj+w\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
