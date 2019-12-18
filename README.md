@@ -166,7 +166,7 @@ end
 - [ ] `POST /user/preferences`
 - [ ] `GET /user/quoteFillRatio`
 - [ ] `POST /user/requestWithdrawal`
-- [ ] `GET /user/wallet`
+- [x] `GET /user/wallet`
 - [ ] `GET /user/walletHistory`
 - [ ] `GET /user/walletSummary`
 
