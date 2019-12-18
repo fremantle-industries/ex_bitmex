@@ -1,4 +1,4 @@
-defmodule ExBitmex.Rest.Trades do
+defmodule ExBitmex.Rest.Trade.Index do
   alias ExBitmex.Rest
 
   @type credentials :: ExBitmex.Credentials.t()
@@ -6,21 +6,23 @@ defmodule ExBitmex.Rest.Trades do
   @type trade :: ExBitmex.Trade.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
 
-  @spec all(params) ::
+  @path "/trade"
+
+  @spec get(params) ::
           {:ok, [trade], rate_limit} | Rest.HTTPClient.auth_error_response()
-  def all(params \\ %{}) do
-    "/trade"
+  def get(params \\ %{}) do
+    @path
     |> Rest.HTTPClient.non_auth_get(params)
     |> parse_response
   end
 
   defp parse_response({:ok, data, rate_limit}) when is_list(data) do
-    fundings =
+    trades =
       data
       |> Enum.map(&to_struct/1)
       |> Enum.map(fn {:ok, p} -> p end)
 
-    {:ok, fundings, rate_limit}
+    {:ok, trades, rate_limit}
   end
 
   defp parse_response({:error, _, _} = error), do: error

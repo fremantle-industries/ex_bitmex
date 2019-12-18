@@ -1,7 +1,8 @@
-defmodule ExBitmex.Rest.TradesTest do
+defmodule ExBitmex.Rest.Trade.IndexTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
-  doctest ExBitmex.Rest.Trades
+  alias ExBitmex.Rest.Trade
+  doctest ExBitmex.Rest.Trade.Index
 
   setup_all do
     HTTPoison.start()
@@ -10,7 +11,7 @@ defmodule ExBitmex.Rest.TradesTest do
 
   test ".all returns an ok tuple with the trades" do
     use_cassette "rest/trades/all_ok" do
-      {:ok, trades, _} = ExBitmex.Rest.Trades.all(%{symbol: "XBTUSD", start: 0, count: 50})
+      {:ok, trades, _} = Trade.Index.get(%{symbol: "XBTUSD", start: 0, count: 50})
       assert Enum.count(trades) == 50
       assert [%ExBitmex.Trade{} | _] = trades
     end

@@ -145,7 +145,7 @@ end
 
 #### Trade
 
-- [ ] `GET /trade`
+- [x] `GET /trade`
 - [ ] `GET /trade/bucketed`
 
 #### User
