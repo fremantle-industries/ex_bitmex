@@ -1,4 +1,4 @@
-defmodule ExBitmex.Rest.Positions do
+defmodule ExBitmex.Rest.Position.Index do
   alias ExBitmex.Rest
 
   @type credentials :: ExBitmex.Credentials.t()
@@ -6,9 +6,9 @@ defmodule ExBitmex.Rest.Positions do
   @type position :: ExBitmex.Position.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
 
-  @spec all(credentials, params) ::
+  @spec get(credentials, params) ::
           {:ok, [position], rate_limit} | Rest.HTTPClient.auth_error_response()
-  def all(%ExBitmex.Credentials{} = credentials, params \\ %{}) do
+  def get(%ExBitmex.Credentials{} = credentials, params \\ %{}) do
     "/position"
     |> Rest.HTTPClient.auth_get(credentials, params)
     |> parse_response

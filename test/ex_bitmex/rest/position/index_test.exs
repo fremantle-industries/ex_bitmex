@@ -1,7 +1,8 @@
-defmodule ExBitmex.Rest.PositionsTest do
+defmodule ExBitmex.Rest.Position.IndexTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
-  doctest ExBitmex.Rest.Positions
+  alias ExBitmex.Rest.Position
+  doctest ExBitmex.Rest.Position.Index
 
   setup_all do
     HTTPoison.start()
@@ -14,8 +15,8 @@ defmodule ExBitmex.Rest.PositionsTest do
   }
 
   test ".all returns a list of positions" do
-    use_cassette "rest/positions/all_ok" do
-      assert {:ok, positions, _} = ExBitmex.Rest.Positions.all(@credentials)
+    use_cassette "rest/position/index_ok" do
+      assert {:ok, positions, _} = Position.Index.get(@credentials)
       assert [%ExBitmex.Position{} | _] = positions
     end
   end
