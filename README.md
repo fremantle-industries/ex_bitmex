@@ -45,3 +45,131 @@ defmodule BitMexWebSocketWrapper do
   end
 end
 ```
+
+## REST Status
+
+#### Announcement
+
+- [ ] `GET /announcement`
+- [ ] `GET /announcement/urgent`
+
+#### APIKey
+
+- [ ] `GET /apiKey`
+
+#### Chat
+
+- [ ] `GET /chat`
+- [ ] `POST /chat`
+- [ ] `GET /chat/channels`
+- [ ] `GET /chat/connected`
+
+#### Execution
+
+- [ ] `GET /execution`
+- [ ] `GET /execution/tradeHistory`
+
+#### Funding
+
+- [x] `GET /funding`
+
+#### GlobalNotification
+
+- [ ] `GET /globalNotification`
+
+#### Instrument
+
+- [x] `GET /instrument`
+- [x] `GET /instrument/active`
+- [x] `GET /instrument/activeAndIndices`
+- [x] `GET /instrument/activeIntervals`
+- [x] `GET /instrument/compositeIndex`
+- [x] `GET /instrument/indicies`
+
+#### Insurance
+
+- [ ] `GET /insurance`
+
+#### Leaderboard
+
+- [ ] `GET /leaderboard`
+- [ ] `GET /leaderboard/name`
+
+#### Liquidation
+
+- [ ] `GET /liquidation`
+
+#### Order
+
+- [ ] `GET /order`
+- [x] `PUT /order`
+- [x] `POST /order`
+- [x] `DELETE /order`
+- [x] `DELETE /order/all`
+- [x] `PUT /order/bulk`
+- [ ] `POST /order/bulk`
+- [ ] `POST /order/cancelAllAfter`
+- [ ] `POST /order/closePosition`
+
+#### OrderBook
+
+- [ ] `GET /orderBook/L2`
+
+#### Position
+
+- [x] `GET /position`
+- [ ] `POST /position/isolate`
+- [ ] `POST /position/leverage`
+- [ ] `POST /position/riskLimit`
+- [ ] `POST /position/transferMargin`
+
+#### Quote
+
+- [ ] `GET /quote`
+- [ ] `GET /quote/bucketed`
+
+#### Schema
+
+- [ ] `GET /schema`
+- [ ] `GET /schema/websocketHelp`
+
+#### Settlement
+
+- [ ] `GET /settlement`
+
+#### Stats
+
+- [ ] `GET /stats`
+- [ ] `GET /stats/history`
+- [ ] `GET /stats/historyUSD`
+
+#### Trade
+
+- [ ] `GET /trade`
+- [ ] `GET /trade/bucketed`
+
+#### User
+
+- [ ] `GET /user`
+- [x] `GET /user/affiliateStatus`
+- [ ] `POST /user/cancelWithdrawal`
+- [ ] `GET /user/checkReferralCode`
+- [x] `GET /user/commmission`
+- [ ] `POST /user/communicationToken`
+- [ ] `POST /user/confirmEmail`
+- [ ] `POST /user/confirmWithdrawal`
+- [ ] `GET /user/depositAddress`
+- [ ] `GET /user/executionHistory`
+- [ ] `POST /user/logout`
+- [x] `GET /user/margin`
+- [ ] `GET /user/minWithdrawalFee`
+- [ ] `POST /user/preferences`
+- [ ] `GET /user/quoteFillRatio`
+- [ ] `POST /user/requestWithdrawal`
+- [ ] `GET /user/wallet`
+- [ ] `GET /user/walletHistory`
+- [ ] `GET /user/walletSummary`
+
+#### UserEvent
+
+- [ ] `GET /userEvent`
