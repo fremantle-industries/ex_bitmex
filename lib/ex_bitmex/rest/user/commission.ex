@@ -3,7 +3,6 @@ defmodule ExBitmex.Rest.User.Commission do
 
   @type credentials :: ExBitmex.Credentials.t() | nil
   @type params :: map
-  @type commission :: ExBitmex.Commission.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
 
   @path "/user/commission"
