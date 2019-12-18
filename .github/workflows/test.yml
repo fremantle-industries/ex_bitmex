@@ -38,7 +38,7 @@ jobs:
       - name: Test
         env:
           BITMEX_API_KEY: ${{secrets.BITMEX_API_KEY}}
-          BITMEX_SECRET: ${{secrets.BITMEX_SECRET}}
+          BITMEX_API_SECRET: ${{secrets.BITMEX_API_SECRET}}
         run: mix test
 
       - name: Dialyzer

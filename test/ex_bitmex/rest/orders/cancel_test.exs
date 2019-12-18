@@ -10,7 +10,7 @@ defmodule ExBitmex.Rest.Orders.CancelTest do
 
   @credentials %ExBitmex.Credentials{
     api_key: System.get_env("BITMEX_API_KEY"),
-    api_secret: System.get_env("BITMEX_SECRET")
+    api_secret: System.get_env("BITMEX_API_SECRET")
   }
 
   test ".cancel returns a list of results" do
