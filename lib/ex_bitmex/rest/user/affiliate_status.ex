@@ -3,7 +3,7 @@ defmodule ExBitmex.Rest.User.AffiliateStatus do
 
   @type credentials :: ExBitmex.Credentials.t() | nil
   @type params :: map
-  @type position :: ExBitmex.AffiliateStatus.t()
+  @type affiliate_status :: ExBitmex.AffiliateStatus.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
 
   @path "/user/affiliateStatus"

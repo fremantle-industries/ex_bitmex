@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-Type": "application/json",
+        "api-nonce": "***",
+        "api-key": "***",
+        "api-signature": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.bitmex.com/api/v1/user/commission"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"ADAH20\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0},\"ADAZ19\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0},\"BCHH20\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0},\"BCHZ19\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0},\"EOSH20\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0},\"EOSZ19\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0},\"ETHH20\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0},\"ETHUSD\":{\"maxFee\":0.00075,\"makerFee\":-0.00025,\"takerFee\":0.00075,\"settlementFee\":0},\"ETHXBT\":{\"maxFee\":0.00075,\"makerFee\":-0.00025,\"takerFee\":0.00075,\"settlementFee\":0},\"ETHZ19\":{\"maxFee\":0.00075,\"makerFee\":-0.00025,\"takerFee\":0.00075,\"settlementFee\":0},\"LTCH20\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0},\"LTCZ19\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0},\"TRXH20\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0},\"TRXZ19\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0},\"XBT7D_D95\":{\"maxFee\":0,\"makerFee\":0,\"takerFee\":0,\"settlementFee\":0},\"XBT7D_U105\":{\"maxFee\":0,\"makerFee\":0,\"takerFee\":0,\"settlementFee\":0},\"XBTH20\":{\"maxFee\":0.00075,\"makerFee\":-0.00025,\"takerFee\":0.00075,\"settlementFee\":0.0005},\"XBTJPY\":{\"maxFee\":0.00075,\"makerFee\":-0.00025,\"takerFee\":0.00075,\"settlementFee\":0},\"XBTKRW\":{\"maxFee\":0.00075,\"makerFee\":-0.00025,\"takerFee\":0.00075,\"settlementFee\":0},\"XBTM20\":{\"maxFee\":0.00075,\"makerFee\":-0.00025,\"takerFee\":0.00075,\"settlementFee\":0.0005},\"XBTUSD\":{\"maxFee\":0.00075,\"makerFee\":-0.00025,\"takerFee\":0.00075,\"settlementFee\":0},\"XBTZ19\":{\"maxFee\":0.00075,\"makerFee\":-0.00025,\"takerFee\":0.00075,\"settlementFee\":0.0005},\"XRPH20\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0},\"XRPZ19\":{\"maxFee\":0.0025,\"makerFee\":-0.0005,\"takerFee\":0.0025,\"settlementFee\":0}}",
+      "headers": {
+        "Date": "Wed, 18 Dec 2019 07:20:20 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "1986",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=bz9sNsDpqzLiiGgLmpyIM061TQJ4d3MWKIAam9VhXQURJgBmDWtR8+XKyofvfjkx5cuik0WcHBgzvQZ9D+6sZUSQRVYA54oc2X8FvjnoflHKsJOpnwni5l2OBh3c; Expires=Wed, 25 Dec 2019 07:20:20 GMT; Path=/",
+        "X-RateLimit-Limit": "60",
+        "X-RateLimit-Remaining": "59",
+        "X-RateLimit-Reset": "1576653621",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"7c2-+tjmz42Nala1YaZQj5maOJtZXcM\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
