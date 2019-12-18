@@ -1,4 +1,4 @@
-defmodule ExBitmex.Rest.Instrument.Index do
+defmodule ExBitmex.Rest.Instrument.Active do
   alias ExBitmex.Rest
 
   @type params :: map
@@ -6,12 +6,12 @@ defmodule ExBitmex.Rest.Instrument.Index do
   @type rate_limit :: ExBitmex.RateLimit.t()
   @type error_reason :: term
 
-  @path "/instrument"
+  @path "/instrument/active"
 
-  @spec get(params) :: {:ok, [instrument], rate_limit} | {:error, error_reason, rate_limit | nil}
-  def get(params \\ %{}) do
+  @spec get :: {:ok, [instrument], rate_limit} | {:error, error_reason, rate_limit | nil}
+  def get do
     @path
-    |> Rest.HTTPClient.non_auth_get(params)
+    |> Rest.HTTPClient.non_auth_get(%{})
     |> parse_response()
   end
 
