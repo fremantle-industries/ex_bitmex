@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "{}",
+      "headers": {
+        "Content-Type": "application/json",
+        "api-nonce": "***",
+        "api-key": "***",
+        "api-signature": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.bitmex.com/api/v1/user/wallet"
+    },
+    "response": {
+      "binary": false,
+      "body": "{\"account\":118037,\"currency\":\"XBt\",\"prevDeposited\":134573360,\"prevWithdrawn\":0,\"prevTransferIn\":1000000,\"prevTransferOut\":0,\"prevAmount\":133558082,\"prevTimestamp\":\"2019-11-25T12:00:00.064Z\",\"deltaDeposited\":0,\"deltaWithdrawn\":0,\"deltaTransferIn\":0,\"deltaTransferOut\":0,\"deltaAmount\":0,\"deposited\":134573360,\"withdrawn\":0,\"transferIn\":1000000,\"transferOut\":0,\"amount\":133558082,\"pendingCredit\":0,\"pendingDebit\":0,\"confirmedDebit\":0,\"timestamp\":\"2019-11-26T12:00:00.668Z\",\"addr\":\"2NBMEXveLBR18TYSPA5MDiP3jEaVjzVyb1C\",\"script\":\"5321022e967760b5fb2c2a1545d24143c85895803f7b3cf59271c50903967baedadcd92102c10be2f0dc20f4285c25156aa22a0c46d2b89ccc4d1c8eaed92ea0c1a8f40c002102ceba29da1af96a0f2ef7cda6950b8be2baeb1adf12c0d5efebb70dbcaa086ba02103d5a42b90e9d7156155661979530a09d2e12e252ef4104e5611274a7ae7e2b09454ae\",\"withdrawalLock\":[]}",
+      "headers": {
+        "Date": "Wed, 18 Dec 2019 08:19:55 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "825",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=WYbCwitQZcMmJCAAO03xTF3IBjCkNf2DJlt79rN0zNK3xE+fmPNL6NPssaP0U73+WmZVF6zR95Pik0PAu1C8GMPSUFbC7OmLhfpHuwpuwkH63nQPXYZ4oQQUnuCq; Expires=Wed, 25 Dec 2019 08:19:55 GMT; Path=/",
+        "X-RateLimit-Limit": "60",
+        "X-RateLimit-Remaining": "59",
+        "X-RateLimit-Reset": "1576657196",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"339-mbGXIZX9jf/MWDV6Mtr5V+eJOiU\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
