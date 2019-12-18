@@ -1,4 +1,4 @@
-defmodule ExBitmex.Rest.Margins do
+defmodule ExBitmex.Rest.User.Margin do
   alias ExBitmex.Rest
 
   @type credentials :: ExBitmex.Credentials.t() | nil
@@ -6,8 +6,10 @@ defmodule ExBitmex.Rest.Margins do
   @type position :: ExBitmex.Margin.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
 
-  def list(%ExBitmex.Credentials{} = credentials, params \\ %{}) do
-    "/user/margin"
+  @path "/user/margin"
+
+  def get(%ExBitmex.Credentials{} = credentials, params \\ %{}) do
+    @path
     |> Rest.HTTPClient.auth_get(credentials, params)
     |> parse_response
   end
