@@ -1,4 +1,4 @@
-defmodule ExBitmex.Rest.Fundings do
+defmodule ExBitmex.Rest.Funding.Index do
   alias ExBitmex.Rest
 
   @type credentials :: ExBitmex.Credentials.t()
@@ -6,9 +6,9 @@ defmodule ExBitmex.Rest.Fundings do
   @type funding :: ExBitmex.Funding.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
 
-  @spec all(params) ::
+  @spec get(params) ::
           {:ok, [funding], rate_limit} | Rest.HTTPClient.auth_error_response()
-  def all(params \\ %{}) do
+  def get(params \\ %{}) do
     "/funding"
     |> Rest.HTTPClient.non_auth_get(params)
     |> parse_response
