@@ -1,6 +1,7 @@
 defmodule ExBitmex.Rest.User.MarginTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
+  import Mock
   alias ExBitmex.Rest.User
   doctest ExBitmex.Rest.User.Margin
 
@@ -25,6 +26,12 @@ defmodule ExBitmex.Rest.User.MarginTest do
     use_cassette "rest/user/margin_ok" do
       assert {:ok, margin, _} = User.Margin.get(@credentials)
       assert %ExBitmex.Margin{} = margin
+    end
+  end
+
+  test ".get bubbles errors without the rate limit" do
+    with_mock HTTPoison, request: fn _url -> {:error, %HTTPoison.Error{reason: :timeout}} end do
+      assert {:error, :timeout, nil} = User.Margin.get(@credentials)
     end
   end
 end
