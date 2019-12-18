@@ -11,7 +11,7 @@ defmodule ExBitmex.Rest.HTTPClientTest do
 
   @credentials %ExBitmex.Credentials{
     api_key: System.get_env("BITMEX_API_KEY"),
-    api_secret: System.get_env("BITMEX_SECRET")
+    api_secret: System.get_env("BITMEX_API_SECRET")
   }
 
   describe ".auth_request" do
