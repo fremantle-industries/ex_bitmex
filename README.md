@@ -150,7 +150,7 @@ end
 
 #### User
 
-- [ ] `GET /user`
+- [x] `GET /user`
 - [x] `GET /user/affiliateStatus`
 - [ ] `POST /user/cancelWithdrawal`
 - [ ] `GET /user/checkReferralCode`
