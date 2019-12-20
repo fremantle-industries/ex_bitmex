@@ -1,5 +1,5 @@
 # ExBitmex
-![Build Status](https://github.com/fremantle-capital/ex_bitmex/workflows/.github/workflows/test.yml/badge.svg)
+[![Build Status](https://github.com/fremantle-capital/ex_bitmex/workflows/.github/workflows/test.yml/badge.svg)](https://github.com/fremantle-capital/ex_bitmex/actions?query=workflow%3A.github%2Fworkflows%2Ftest.yml)
 [![Coverage Status](https://coveralls.io/repos/github/fremantle-capital/ex_bitmex/badge.svg?branch=master)](https://coveralls.io/github/fremantle-capital/ex_bitmex?branch=master)
 [![hex.pm version](https://img.shields.io/hexpm/v/ex_bitmex.svg?style=flat)](https://hex.pm/packages/ex_bitmex)
 
