@@ -22,7 +22,7 @@ defmodule ExBitmex.Rest.User.AffiliateStatusTest do
     end
   end
 
-  test ".get bubbles errors without the rate limit" do
+  test ".get bubbles errors" do
     with_mock HTTPoison, request: fn _url -> {:error, %HTTPoison.Error{reason: :timeout}} end do
       assert {:error, :timeout, nil} = User.AffiliateStatus.get(@credentials)
     end
