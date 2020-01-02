@@ -8,7 +8,7 @@ BitMEX API Client for Elixir
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `bitmex` to your list of dependencies in `mix.exs`:
+by adding `ex_bitmex` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -168,7 +168,7 @@ end
 - [ ] `GET /user/quoteFillRatio`
 - [ ] `POST /user/requestWithdrawal`
 - [x] `GET /user/wallet`
-- [ ] `GET /user/walletHistory`
+- [x] `GET /user/walletHistory`
 - [ ] `GET /user/walletSummary`
 
 #### UserEvent

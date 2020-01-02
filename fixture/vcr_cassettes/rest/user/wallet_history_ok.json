@@ -1,0 +1,36 @@
+[
+  {
+    "request": {
+      "body": "{\"count\":10,\"symbol\":\"XBT\"}",
+      "headers": {
+        "Content-Type": "application/json",
+        "api-nonce": "***",
+        "api-key": "***",
+        "api-signature": "***"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.bitmex.com/api/v1/user/walletHistory"
+    },
+    "response": {
+      "binary": false,
+      "body": "[{\"transactID\":\"00000000-0000-0000-0000-000000000000\",\"account\":256112,\"currency\":\"XBt\",\"transactType\":\"UnrealisedPNL\",\"amount\":-3318,\"fee\":0,\"transactStatus\":\"Pending\",\"address\":\"XBTUSD\",\"tx\":\"\",\"text\":\"\",\"transactTime\":null,\"walletBalance\":1997394,\"marginBalance\":1994076,\"timestamp\":null},{\"transactID\":\"00000000-0000-0000-0000-000000000000\",\"account\":256112,\"currency\":\"XBt\",\"transactType\":\"RealisedPNL\",\"amount\":-15,\"fee\":0,\"transactStatus\":\"Completed\",\"address\":\"XBTUSD\",\"tx\":\"\",\"text\":\"\",\"transactTime\":\"2020-01-03T12:00:00.000Z\",\"walletBalance\":1997394,\"marginBalance\":null,\"timestamp\":\"2020-01-03T12:00:00.000Z\"},{\"transactID\":\"902ad265-83bf-c25c-a0b6-0265990625c2\",\"account\":256112,\"currency\":\"XBt\",\"transactType\":\"Deposit\",\"amount\":1000000,\"fee\":null,\"transactStatus\":\"Completed\",\"address\":\"\",\"tx\":\"\",\"text\":\"\",\"transactTime\":\"2020-01-02T15:30:57.361Z\",\"walletBalance\":1997409,\"marginBalance\":null,\"timestamp\":\"2020-01-02T15:30:57.361Z\"},{\"transactID\":\"93001a5d-be91-62e0-887f-b65c873239e5\",\"account\":256112,\"currency\":\"XBt\",\"transactType\":\"RealisedPNL\",\"amount\":22,\"fee\":0,\"transactStatus\":\"Completed\",\"address\":\"XBTUSD\",\"tx\":\"15cbdcaf-9c78-1f32-8790-eb615035a975\",\"text\":\"\",\"transactTime\":\"2020-01-02T12:00:00.000Z\",\"walletBalance\":997409,\"marginBalance\":null,\"timestamp\":\"2020-01-02T12:00:00.021Z\"},{\"transactID\":\"821abd81-a1e7-aedd-976f-8d15ce68e2a3\",\"account\":256112,\"currency\":\"XBt\",\"transactType\":\"RealisedPNL\",\"amount\":44,\"fee\":0,\"transactStatus\":\"Completed\",\"address\":\"XBTUSD\",\"tx\":\"b1715128-ea08-4c29-5ae4-eac692fa454d\",\"text\":\"\",\"transactTime\":\"2020-01-01T12:00:00.000Z\",\"walletBalance\":997387,\"marginBalance\":null,\"timestamp\":\"2020-01-01T12:00:00.021Z\"},{\"transactID\":\"ea696581-0d53-6212-279f-30f3ff7c0ec9\",\"account\":256112,\"currency\":\"XBt\",\"transactType\":\"RealisedPNL\",\"amount\":-80,\"fee\":0,\"transactStatus\":\"Completed\",\"address\":\"XBTUSD\",\"tx\":\"d9560f03-cdb6-a2cb-ea45-2ba755078133\",\"text\":\"\",\"transactTime\":\"2019-12-31T12:00:00.000Z\",\"walletBalance\":997343,\"marginBalance\":null,\"timestamp\":\"2019-12-31T12:00:00.021Z\"},{\"transactID\":\"8b09b522-f833-ec35-1f10-60f1f691ca1e\",\"account\":256112,\"currency\":\"XBt\",\"transactType\":\"RealisedPNL\",\"amount\":-123,\"fee\":0,\"transactStatus\":\"Completed\",\"address\":\"XBTUSD\",\"tx\":\"0cbeab07-f5ea-bc7a-c29e-6f1b28e9c3f5\",\"text\":\"\",\"transactTime\":\"2019-12-30T12:00:00.000Z\",\"walletBalance\":997423,\"marginBalance\":null,\"timestamp\":\"2019-12-30T12:00:00.021Z\"},{\"transactID\":\"77711863-f027-7063-2a3a-d60018b4deef\",\"account\":256112,\"currency\":\"XBt\",\"transactType\":\"RealisedPNL\",\"amount\":-31,\"fee\":0,\"transactStatus\":\"Completed\",\"address\":\"XBTUSD\",\"tx\":\"f3ad9d21-4010-891a-c7c3-2705a69cf71b\",\"text\":\"\",\"transactTime\":\"2019-12-29T12:00:00.000Z\",\"walletBalance\":997546,\"marginBalance\":null,\"timestamp\":\"2019-12-29T12:00:00.021Z\"},{\"transactID\":\"79981ed6-55e0-04fd-7082-6c7f9da00692\",\"account\":256112,\"currency\":\"XBt\",\"transactType\":\"RealisedPNL\",\"amount\":-33,\"fee\":0,\"transactStatus\":\"Completed\",\"address\":\"XBTUSD\",\"tx\":\"1d8dabef-b134-f38a-1204-dd341940074d\",\"text\":\"\",\"transactTime\":\"2019-12-28T12:00:00.000Z\",\"walletBalance\":997577,\"marginBalance\":null,\"timestamp\":\"2019-12-28T12:00:00.021Z\"},{\"transactID\":\"a8930398-9959-8e14-5efe-fea3fb49c62e\",\"account\":256112,\"currency\":\"XBt\",\"transactType\":\"RealisedPNL\",\"amount\":-73,\"fee\":0,\"transactStatus\":\"Completed\",\"address\":\"XBTUSD\",\"tx\":\"3fa48e11-fad3-148c-3cc7-1bbef8e41778\",\"text\":\"\",\"transactTime\":\"2019-12-27T12:00:00.000Z\",\"walletBalance\":997610,\"marginBalance\":null,\"timestamp\":\"2019-12-27T12:00:00.021Z\"}]",
+      "headers": {
+        "Date": "Thu, 02 Jan 2020 16:41:13 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "3503",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALB=SERfk4qad0Stzxv+/GnKIpSNIbIZqTD8/7y7J/pw/g+uJSgxutL3BdYEh4JmaU1SllIcthpI3AQc9i1CdzrGO4AvORQHxlcoLutUYqhXPKZEMERHOwFjgsk61G4b; Expires=Thu, 09 Jan 2020 16:41:13 GMT; Path=/",
+        "X-RateLimit-Limit": "60",
+        "X-RateLimit-Remaining": "59",
+        "X-RateLimit-Reset": "1577983274",
+        "X-Powered-By": "Profit",
+        "ETag": "W/\"daf-OmEzZKfYq/zWTR0KzRcOtAqz8gQ\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
