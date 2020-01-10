@@ -1,4 +1,5 @@
 defmodule ExBitmex.Rest.HTTPClient do
+  @type path :: String.t()
   @type verb :: :get | :post | :put | :delete
   @type credentials :: ExBitmex.Credentials.t()
   @type params :: map
@@ -35,27 +36,27 @@ defmodule ExBitmex.Rest.HTTPClient do
   @type non_auth_response ::
           {:ok, map | [map], rate_limit} | {:error, non_auth_error_reason, rate_limit | nil}
 
-  @spec auth_get(path :: String.t(), credentials, params) :: auth_response
+  @spec auth_get(path, credentials, params) :: auth_response
   def auth_get(path, credentials, params) do
     auth_request(:get, path, credentials, params)
   end
 
-  @spec auth_post(path :: String.t(), credentials, params) :: auth_response
+  @spec auth_post(path, credentials, params) :: auth_response
   def auth_post(path, credentials, params) do
     auth_request(:post, path, credentials, params)
   end
 
-  @spec auth_put(path :: String.t(), credentials, params) :: auth_response
+  @spec auth_put(path, credentials, params) :: auth_response
   def auth_put(path, credentials, params) do
     auth_request(:put, path, credentials, params)
   end
 
-  @spec auth_delete(path :: String.t(), credentials, params) :: auth_response
+  @spec auth_delete(path, credentials, params) :: auth_response
   def auth_delete(path, credentials, params) do
     auth_request(:delete, path, credentials, params)
   end
 
-  @spec auth_request(verb, path :: String.t(), credentials, params) :: auth_response
+  @spec auth_request(verb, path, credentials, params) :: auth_response
   def auth_request(verb, path, credentials, params) do
     body = Jason.encode!(params)
 
@@ -73,12 +74,12 @@ defmodule ExBitmex.Rest.HTTPClient do
     |> send
   end
 
-  @spec non_auth_get(path :: String.t(), params) :: non_auth_response
+  @spec non_auth_get(path, params) :: non_auth_response
   def non_auth_get(path, params \\ %{}) do
     non_auth_request(:get, path, params)
   end
 
-  @spec non_auth_request(verb, path :: String.t(), params) :: non_auth_response
+  @spec non_auth_request(verb, path, params) :: non_auth_response
   def non_auth_request(verb, path, params) do
     body = Jason.encode!(params)
     headers = [] |> put_content_type(:json)
@@ -100,7 +101,7 @@ defmodule ExBitmex.Rest.HTTPClient do
 
   def api_path, do: Application.get_env(:ex_bitmex, :api_path, "/api/v1")
 
-  @spec url(path :: String.t()) :: String.t()
+  @spec url(path) :: String.t()
   def url(path), do: origin() <> api_path() <> path
 
   defp send(request) do
