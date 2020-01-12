@@ -7,14 +7,11 @@ BitMEX API Client for Elixir
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `ex_bitmex` to your list of dependencies in `mix.exs`:
+Add the `ex_bitmex` package to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [
-    {:ex_bitmex, "~> 0.4"}
-  ]
+  [{:ex_bitmex, "~> 0.4"}]
 end
 ```
 
