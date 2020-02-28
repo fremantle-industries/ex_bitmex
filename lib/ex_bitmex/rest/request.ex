@@ -1,6 +1,5 @@
 defmodule ExBitmex.Rest.Request do
   @type path :: String.t()
-  @type verb :: :get | :post | :put | :delete
   @type credentials :: ExBitmex.Credentials.t()
   @type params :: map
   @type rate_limit :: ExBitmex.RateLimit.t()
@@ -36,83 +35,11 @@ defmodule ExBitmex.Rest.Request do
   @type non_auth_response ::
           {:ok, map | [map], rate_limit} | {:error, non_auth_error_reason, rate_limit | nil}
 
-  @spec auth_request(verb, path, credentials, params) :: auth_response
-  def auth_request(verb, path, credentials, params) do
-    body = Jason.encode!(params)
-
-    headers =
-      verb
-      |> auth_headers(path, body, credentials)
-      |> put_content_type(:json)
-
-    %HTTPoison.Request{
-      method: verb,
-      url: path |> url,
-      headers: headers,
-      body: body
-    }
-    |> send
-  end
-
-  @spec non_auth_request(verb, path, params) :: non_auth_response
-  def non_auth_request(verb, path, params) do
-    body = Jason.encode!(params)
-    headers = [] |> put_content_type(:json)
-
-    %HTTPoison.Request{
-      method: verb,
-      url: path |> url,
-      headers: headers,
-      body: body
-    }
-    |> send
-  end
-
-  def rest_protocol, do: Application.get_env(:ex_bitmex, :rest_protocol, "https://")
-
-  def domain, do: Application.get_env(:ex_bitmex, :domain, "www.bitmex.com")
-
-  def origin, do: rest_protocol() <> domain()
-
-  def api_path, do: Application.get_env(:ex_bitmex, :api_path, "/api/v1")
-
-  @spec url(path) :: String.t()
-  def url(path), do: origin() <> api_path() <> path
-
-  defp send(request) do
+  def send(request) do
     request
     |> HTTPoison.request()
     |> parse_rate_limits
     |> parse_response
-  end
-
-  defp auth_headers(verb, path, data, credentials) do
-    nonce = ExBitmex.Auth.nonce()
-    normalized_verb = verb |> normalize_verb
-
-    signature =
-      ExBitmex.Auth.sign(
-        credentials.api_secret,
-        normalized_verb,
-        api_path() <> path,
-        nonce,
-        data
-      )
-
-    [
-      "api-nonce": nonce |> to_string(),
-      "api-key": credentials.api_key,
-      "api-signature": signature
-    ]
-  end
-
-  defp normalize_verb(:get), do: "GET"
-  defp normalize_verb(:post), do: "POST"
-  defp normalize_verb(:put), do: "PUT"
-  defp normalize_verb(:delete), do: "DELETE"
-
-  defp put_content_type(headers, :json) do
-    Keyword.put(headers, :"Content-Type", "application/json")
   end
 
   @limit_header "X-RateLimit-Limit"

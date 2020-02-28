@@ -14,69 +14,89 @@ defmodule ExBitmex.Rest.RequestTest do
     :ok
   end
 
-  describe ".auth_request/4" do
-    test "returns the current rate limit" do
-      use_cassette "rest/request/auth_request_with_rate_limit" do
-        assert {:ok, _, rate_limit} =
-                 ExBitmex.Rest.Request.auth_request(:post, "/order", @credentials, %{})
-
-        assert rate_limit == %ExBitmex.RateLimit{
-                 limit: 300,
-                 remaining: 299,
-                 reset: 1_543_383_854
-               }
+  describe ".send/1 success" do
+    test "returns the body payload as json" do
+      use_cassette "rest/request/ok_payload_json" do
+        assert {:ok, [_ | _], _} = ExBitmex.Rest.HTTPClient.non_auth_request(:get, "/stats", %{})
       end
     end
 
-    test "returns an error tuple with no rate limits when the request times out" do
+    test "returns rate limit for successful requests" do
+      use_cassette "rest/request/ok_with_rate_limit" do
+        assert {:ok, _, rate_limit} =
+                 ExBitmex.Rest.HTTPClient.non_auth_request(:get, "/stats", %{})
+
+        assert %ExBitmex.RateLimit{} = rate_limit
+        assert rate_limit.limit > 0
+        assert rate_limit.remaining > 0
+        assert rate_limit.reset > 0
+      end
+    end
+  end
+
+  describe ".send/1 error" do
+    test "returns an error when rate limited" do
+      use_cassette "rest/request/error_rate_limited" do
+        assert {:error, :rate_limited, rate_limit} =
+                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
+
+        assert %ExBitmex.RateLimit{} = rate_limit
+        assert rate_limit.limit > 0
+        assert rate_limit.remaining == 0
+        assert rate_limit.reset > 0
+      end
+    end
+
+    test "returns an error without rate limits when the request times out" do
       with_mock HTTPoison, request: fn _url -> {:error, %HTTPoison.Error{reason: :timeout}} end do
-        assert ExBitmex.Rest.Request.auth_request(:get, "/stats", @credentials, %{}) ==
+        assert ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{}) ==
                  {:error, :timeout, nil}
       end
     end
 
-    test "returns an error tuple with no rate limits when the request has a connect timeout" do
+    test "returns an error without rate limits when the request has a connect timeout" do
       with_mock HTTPoison,
         request: fn _url -> {:error, %HTTPoison.Error{reason: :connect_timeout}} end do
-        assert ExBitmex.Rest.Request.auth_request(:get, "/stats", @credentials, %{}) ==
+        assert ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{}) ==
                  {:error, :connect_timeout, nil}
       end
     end
 
-    test "returns an error tuple when the params are invalid" do
-      use_cassette "rest/request/auth_request_error_bad_request" do
-        assert {:error, reason, _} =
-                 ExBitmex.Rest.Request.auth_request(:post, "/order", @credentials, %{})
-
-        assert reason ==
-                 {:bad_request,
-                  %{
-                    "error" => %{
-                      "message" => "'symbol' is a required arg.",
-                      "name" => "HTTPError"
-                    }
-                  }}
-      end
-    end
-
-    test "returns an error tuple with no rate limits when the IP address is forbidden" do
-      use_cassette "rest/request/auth_request_error_ip_forbidden" do
+    test "returns an error without rate limits when the IP address is forbidden" do
+      use_cassette "rest/request/error_ip_forbidden" do
         assert {:error, :ip_forbidden, nil} =
-                 ExBitmex.Rest.Request.auth_request(:post, "/order", @credentials, %{})
+                 ExBitmex.Rest.HTTPClient.auth_request(:post, "/order", @credentials, %{})
       end
     end
 
-    test "returns an error tuple with no rate limits when the signature is invalid" do
-      use_cassette "rest/request/auth_request_error_invalid_signature" do
+    test "returns an error without rate limits when the signature is invalid" do
+      use_cassette "rest/request/error_invalid_signature" do
         assert {:error, :invalid_signature, nil} =
-                 ExBitmex.Rest.Request.auth_request(:post, "/order", @credentials, %{})
+                 ExBitmex.Rest.HTTPClient.auth_request(:post, "/order", @credentials, %{})
       end
     end
 
-    test "returns an error tuple when the resource is not found" do
-      use_cassette "rest/request/auth_request_not_found" do
+    test "returns an error when the params are invalid" do
+      use_cassette "rest/request/error_bad_request" do
+        assert {:error, reason, _} =
+                 ExBitmex.Rest.HTTPClient.auth_request(:post, "/order", @credentials, %{})
+
+        assert {:bad_request, msg} = reason
+
+        assert msg ==
+                 %{
+                   "error" => %{
+                     "message" => "'symbol' is a required arg.",
+                     "name" => "HTTPError"
+                   }
+                 }
+      end
+    end
+
+    test "returns an error when a resource is not found" do
+      use_cassette "rest/request/error_not_found" do
         assert {:error, :not_found, _} =
-                 ExBitmex.Rest.Request.auth_request(
+                 ExBitmex.Rest.HTTPClient.auth_request(
                    :delete,
                    "/stats",
                    @credentials,
@@ -85,60 +105,26 @@ defmodule ExBitmex.Rest.RequestTest do
       end
     end
 
-    test "returns an error tuple when overloaded" do
-      use_cassette "rest/request/auth_request_overloaded" do
+    test "returns an error when overloaded" do
+      use_cassette "rest/request/error_overloaded" do
         assert {:error, :overloaded, _} =
-                 ExBitmex.Rest.Request.auth_request(:get, "/stats", @credentials, %{})
+                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
       end
     end
 
-    test "returns an error tuple when the nonce is not increasing" do
-      use_cassette "rest/request/auth_request_nonce_not_increasing" do
+    test "returns an error when the nonce is not increasing" do
+      use_cassette "rest/request/error_nonce_not_increasing" do
         assert {:error, {:nonce_not_increasing, msg}, _} =
-                 ExBitmex.Rest.Request.auth_request(:get, "/stats", @credentials, %{})
+                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
 
-        assert msg ==
-                 "Nonce is not increasing. This nonce: 62279790258940, last nonce: 62279790258995"
+        assert msg =~ "Nonce is not increasing. This nonce:"
       end
     end
 
-    test "returns an error tuple when the request response is a bad gateway" do
-      use_cassette "rest/request/auth_request_bad_gateway" do
+    test "returns an error when the response is a bad gateway" do
+      use_cassette "rest/request/error_bad_gateway" do
         assert {:error, :bad_gateway, _} =
-                 ExBitmex.Rest.Request.auth_request(:get, "/stats", @credentials, %{})
-      end
-    end
-
-    test "returns an error tuple when rate limited" do
-      use_cassette "rest/request/auth_request_rate_limited" do
-        assert {:error, :rate_limited, rate_limit} =
-                 ExBitmex.Rest.Request.auth_request(:get, "/stats", @credentials, %{})
-
-        assert rate_limit == %ExBitmex.RateLimit{
-                 limit: 300,
-                 remaining: 0,
-                 reset: 1_551_300_384
-               }
-      end
-    end
-  end
-
-  describe ".non_auth_request/3" do
-    test "returns an ok tuple with json" do
-      use_cassette "rest/request/non_auth_request_ok" do
-        assert {:ok, [_ | _], _} = ExBitmex.Rest.Request.non_auth_request(:get, "/stats", %{})
-      end
-    end
-
-    test "returns the current rate limit" do
-      use_cassette "rest/request/non_auth_request_with_rate_limit" do
-        assert {:ok, _, rate_limit} = ExBitmex.Rest.Request.non_auth_request(:get, "/stats", %{})
-
-        assert rate_limit == %ExBitmex.RateLimit{
-                 limit: 150,
-                 remaining: 149,
-                 reset: 1_543_467_798
-               }
+                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
       end
     end
   end
