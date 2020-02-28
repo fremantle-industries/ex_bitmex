@@ -12,6 +12,7 @@ defmodule ExBitmex.Rest.Request do
   @type auth_error_reason ::
           :timeout
           | :connect_timeout
+          | :non_existent_domain
           | :not_found
           | bad_request
           | :rate_limited
@@ -175,5 +176,11 @@ defmodule ExBitmex.Rest.Request do
 
   defp parse_response({:error, %HTTPoison.Error{reason: :connect_timeout}, nil}) do
     {:error, :connect_timeout, nil}
+  end
+
+  @non_existent_domain [:nxdomain, "nxdomain"]
+  defp parse_response({:error, %HTTPoison.Error{reason: reason}, nil})
+       when reason in @non_existent_domain do
+    {:error, :non_existent_domain, nil}
   end
 end

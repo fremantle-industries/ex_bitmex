@@ -38,7 +38,7 @@ defmodule ExBitmex.Rest.RequestTest do
     test "returns an error when rate limited" do
       use_cassette "rest/request/error_rate_limited" do
         assert {:error, :rate_limited, rate_limit} =
-                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
+                 ExBitmex.Rest.HTTPClient.non_auth_request(:get, "/stats", %{})
 
         assert %ExBitmex.RateLimit{} = rate_limit
         assert rate_limit.limit > 0
@@ -49,7 +49,7 @@ defmodule ExBitmex.Rest.RequestTest do
 
     test "returns an error without rate limits when the request times out" do
       with_mock HTTPoison, request: fn _url -> {:error, %HTTPoison.Error{reason: :timeout}} end do
-        assert ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{}) ==
+        assert ExBitmex.Rest.HTTPClient.non_auth_request(:get, "/stats", %{}) ==
                  {:error, :timeout, nil}
       end
     end
@@ -57,7 +57,7 @@ defmodule ExBitmex.Rest.RequestTest do
     test "returns an error without rate limits when the request has a connect timeout" do
       with_mock HTTPoison,
         request: fn _url -> {:error, %HTTPoison.Error{reason: :connect_timeout}} end do
-        assert ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{}) ==
+        assert ExBitmex.Rest.HTTPClient.non_auth_request(:get, "/stats", %{}) ==
                  {:error, :connect_timeout, nil}
       end
     end
@@ -108,14 +108,14 @@ defmodule ExBitmex.Rest.RequestTest do
     test "returns an error when overloaded" do
       use_cassette "rest/request/error_overloaded" do
         assert {:error, :overloaded, _} =
-                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
+                 ExBitmex.Rest.HTTPClient.non_auth_request(:get, "/stats", %{})
       end
     end
 
     test "returns an error when the nonce is not increasing" do
       use_cassette "rest/request/error_nonce_not_increasing" do
         assert {:error, {:nonce_not_increasing, msg}, _} =
-                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
+                 ExBitmex.Rest.HTTPClient.non_auth_request(:get, "/stats", %{})
 
         assert msg =~ "Nonce is not increasing. This nonce:"
       end
@@ -124,7 +124,20 @@ defmodule ExBitmex.Rest.RequestTest do
     test "returns an error when the response is a bad gateway" do
       use_cassette "rest/request/error_bad_gateway" do
         assert {:error, :bad_gateway, _} =
-                 ExBitmex.Rest.HTTPClient.auth_request(:get, "/stats", @credentials, %{})
+                 ExBitmex.Rest.HTTPClient.non_auth_request(:get, "/stats", %{})
+      end
+    end
+
+    test "returns an error when a connection to the domain can't be established" do
+      use_cassette "rest/request/error_no_connection" do
+        assert {:error, :non_existent_domain, nil} =
+                 ExBitmex.Rest.HTTPClient.non_auth_request(:get, "/stats", %{})
+      end
+
+      with_mock HTTPoison,
+        request: fn _url -> {:error, %HTTPoison.Error{reason: :nxdomain}} end do
+        assert ExBitmex.Rest.HTTPClient.non_auth_request(:get, "/stats", %{}) ==
+                 {:error, :non_existent_domain, nil}
       end
     end
   end
