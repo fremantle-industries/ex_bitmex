@@ -5,11 +5,11 @@ defmodule ExBitmex.Rest.Trade.Index do
   @type params :: map
   @type trade :: ExBitmex.Trade.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
+  @type auth_error_response :: Rest.Request.auth_error_response()
 
   @path "/trade"
 
-  @spec get(params) ::
-          {:ok, [trade], rate_limit} | Rest.HTTPClient.auth_error_response()
+  @spec get(params) :: {:ok, [trade], rate_limit} | auth_error_response
   def get(params \\ %{}) do
     @path
     |> Rest.HTTPClient.non_auth_get(params)

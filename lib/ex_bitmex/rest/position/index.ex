@@ -5,9 +5,9 @@ defmodule ExBitmex.Rest.Position.Index do
   @type params :: map
   @type position :: ExBitmex.Position.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
+  @type auth_error_response :: Rest.Request.auth_error_response()
 
-  @spec get(credentials, params) ::
-          {:ok, [position], rate_limit} | Rest.HTTPClient.auth_error_response()
+  @spec get(credentials, params) :: {:ok, [position], rate_limit} | auth_error_response
   def get(%ExBitmex.Credentials{} = credentials, params \\ %{}) do
     "/position"
     |> Rest.HTTPClient.auth_get(credentials, params)
