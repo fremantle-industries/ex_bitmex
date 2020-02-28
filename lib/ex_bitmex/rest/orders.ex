@@ -4,7 +4,7 @@ defmodule ExBitmex.Rest.Orders do
   @type credentials :: ExBitmex.Credentials.t()
   @type order :: ExBitmex.Order.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
-  @type auth_error_reason :: Rest.HTTPClient.auth_error_reason()
+  @type auth_error_reason :: Rest.Request.auth_error_reason()
   @type params :: map
   @type insufficient_balance_error_reason :: {:insufficient_balance, error_msg :: String.t()}
   @type create_error_reason :: auth_error_reason | insufficient_balance_error_reason

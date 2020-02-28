@@ -5,9 +5,9 @@ defmodule ExBitmex.Rest.Funding.Index do
   @type params :: map
   @type funding :: ExBitmex.Funding.t()
   @type rate_limit :: ExBitmex.RateLimit.t()
+  @type auth_error_response :: Rest.Request.auth_error_response()
 
-  @spec get(params) ::
-          {:ok, [funding], rate_limit} | Rest.HTTPClient.auth_error_response()
+  @spec get(params) :: {:ok, [funding], rate_limit} | auth_error_response
   def get(params \\ %{}) do
     "/funding"
     |> Rest.HTTPClient.non_auth_get(params)
