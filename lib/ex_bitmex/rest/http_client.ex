@@ -137,9 +137,9 @@ defmodule ExBitmex.Rest.HTTPClient do
     Keyword.put(headers, :"Content-Type", "application/json")
   end
 
-  @limit_header "X-RateLimit-Limit"
-  @remaining_header "X-RateLimit-Remaining"
-  @reset_header "X-RateLimit-Reset"
+  @limit_header "x-ratelimit-limit"
+  @remaining_header "x-ratelimit-remaining"
+  @reset_header "x-ratelimit-reset"
 
   defp parse_rate_limits({result, %HTTPoison.Response{headers: headers} = response}) do
     limit_headers =
@@ -147,7 +147,7 @@ defmodule ExBitmex.Rest.HTTPClient do
       |> Enum.reduce(
         %{},
         fn {k, v}, acc ->
-          case k do
+          case String.downcase(k) do
             @limit_header -> Map.put(acc, :limit, v)
             @remaining_header -> Map.put(acc, :remaining, v)
             @reset_header -> Map.put(acc, :reset, v)
