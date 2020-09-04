@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "{\"symbol\":\"XBTUSD\"}",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://testnet.bitmex.com/api/v1/instrument"
+    },
+    "response": {
+      "binary": false,
+      "body": "[{\"symbol\":\"XBTUSD\",\"rootSymbol\":\"XBT\",\"state\":\"Open\",\"typ\":\"FFWCSX\",\"listing\":\"2016-05-04T12:00:00.000Z\",\"front\":\"2016-05-04T12:00:00.000Z\",\"expiry\":null,\"settle\":null,\"relistInterval\":null,\"inverseLeg\":\"\",\"sellLeg\":\"\",\"buyLeg\":\"\",\"optionStrikePcnt\":null,\"optionStrikeRound\":null,\"optionStrikePrice\":null,\"optionMultiplier\":null,\"positionCurrency\":\"USD\",\"underlying\":\"XBT\",\"quoteCurrency\":\"USD\",\"underlyingSymbol\":\"XBT=\",\"reference\":\"BMEX\",\"referenceSymbol\":\".BXBT\",\"calcInterval\":null,\"publishInterval\":null,\"publishTime\":null,\"maxOrderQty\":10000000,\"maxPrice\":1000000,\"lotSize\":1,\"tickSize\":0.5,\"multiplier\":-100000000,\"settlCurrency\":\"XBt\",\"underlyingToPositionMultiplier\":null,\"underlyingToSettleMultiplier\":-100000000,\"quoteToSettleMultiplier\":null,\"isQuanto\":false,\"isInverse\":true,\"initMargin\":0.01,\"maintMargin\":0.0035,\"riskLimit\":20000000000,\"riskStep\":10000000000,\"limit\":null,\"capped\":false,\"taxed\":true,\"deleverage\":true,\"makerFee\":-0.00025,\"takerFee\":0.00075,\"settlementFee\":0,\"insuranceFee\":0,\"fundingBaseSymbol\":\".XBTBON8H\",\"fundingQuoteSymbol\":\".USDBON8H\",\"fundingPremiumSymbol\":\".XBTUSDPI8H\",\"fundingTimestamp\":\"2020-09-04T12:00:00.000Z\",\"fundingInterval\":\"2000-01-01T08:00:00.000Z\",\"fundingRate\":0.004875,\"indicativeFundingRate\":0.004875,\"rebalanceTimestamp\":null,\"rebalanceInterval\":null,\"openingTimestamp\":\"2020-09-04T04:00:00.000Z\",\"closingTimestamp\":\"2020-09-04T05:00:00.000Z\",\"sessionInterval\":\"2000-01-01T01:00:00.000Z\",\"prevClosePrice\":11223.06,\"limitDownPrice\":null,\"limitUpPrice\":null,\"bankruptLimitDownPrice\":null,\"bankruptLimitUpPrice\":null,\"prevTotalVolume\":135126228835,\"totalVolume\":135126365492,\"volume\":136657,\"volume24h\":32230277,\"prevTotalTurnover\":1916790554755989,\"totalTurnover\":1916791850199867,\"turnover\":1295443878,\"turnover24h\":295553095319,\"homeNotional24h\":2955.530953190002,\"foreignNotional24h\":32230277,\"prevPrice24h\":11423.5,\"vwap\":10905.1254,\"highPrice\":11583,\"lowPrice\":10500,\"lastPrice\":10525.5,\"lastPriceProtected\":10525.5,\"lastTickDirection\":\"PlusTick\",\"lastChangePcnt\":-0.0786,\"bidPrice\":10525,\"midPrice\":10525.25,\"askPrice\":10525.5,\"impactBidPrice\":10525,\"impactMidPrice\":10535,\"impactAskPrice\":10545.1861,\"hasLiquidity\":true,\"openInterest\":67412628,\"openValue\":649520670780,\"fairMethod\":\"FundingRate\",\"fairBasisRate\":5.338125,\"fairBasis\":47.74,\"fairPrice\":10379.25,\"markMethod\":\"FairPrice\",\"markPrice\":10379.25,\"indicativeTaxRate\":0,\"indicativeSettlePrice\":10331.51,\"optionUnderlyingPrice\":null,\"settledPrice\":null,\"timestamp\":\"2020-09-04T04:25:50.000Z\"}]",
+      "headers": {
+        "Date": "Fri, 04 Sep 2020 04:25:50 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "2512",
+        "Connection": "keep-alive",
+        "Set-Cookie": "AWSALBTG=eNdNgwAtKKTmm2/WJ8ZFQHHv/QwbV4PkpYrDS+LyU5Syj3fUtKGncFewDo4H142ep94soBBWrgy1nZ2SGxEo3DvsdmKKQZwG8aTRxNvwzIHfB80LHZHyLXmchSZt+7/VVx2QH8Jwd07YSWyBzJND/3ZynPj799F0IH5DbKz7uJH2; Expires=Fri, 11 Sep 2020 04:25:50 GMT; Path=/",
+        "x-ratelimit-limit": "30",
+        "x-ratelimit-remaining": "29",
+        "x-ratelimit-reset": "1599193551",
+        "X-Powered-By": "Profit",
+        "Etag": "W/\"9d0-N60msj8yfSE9FL+zXHk5Sh7jKx0\"",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

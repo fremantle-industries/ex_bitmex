@@ -13,4 +13,10 @@ defmodule ExBitmex.Rest.InstrumentsTest do
       assert {:ok, [%{"takerFee" => _} | _], _} = ExBitmex.Rest.Instruments.all()
     end
   end
+
+  test "return an instrument details" do
+    use_cassette "rest/instruments/get_mark_price" do
+      assert {:ok, [%{"markPrice" => 10379.25} | _], _} = ExBitmex.Rest.Instruments.get_mark_price("XBTUSD")
+    end
+  end
 end
