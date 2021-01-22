@@ -15,7 +15,7 @@ defmodule ExBitmex.Rest.Orders.CreateTest do
 
   test ".create returns the order response" do
     use_cassette "rest/orders/create_buy_limit_ok" do
-      assert {:ok, order, _} =
+      assert {:ok, order, %ExBitmex.RateLimit{}} =
                ExBitmex.Rest.Orders.create(
                  @credentials,
                  %{
