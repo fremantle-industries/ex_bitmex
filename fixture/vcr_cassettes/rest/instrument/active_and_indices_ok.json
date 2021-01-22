@@ -19,9 +19,9 @@
         "Content-Length": "226050",
         "Connection": "keep-alive",
         "Set-Cookie": "AWSALB=EZB7q456vBDXZZaA2HLioMXQH1r0+ed4/EA681WXt5cpw+jmoz/SpZ6708ZtDdmB6Jt8ph/W5VWPt2cEnMdAuSc4zUFfgf9nNPF7TaFw/izminUl8Z6OzWT6sHWD; Expires=Wed, 25 Dec 2019 01:59:35 GMT; Path=/",
-        "X-RateLimit-Limit": "30",
-        "X-RateLimit-Remaining": "29",
-        "X-RateLimit-Reset": "1576634376",
+        "x-ratelimit-limit": "30",
+        "x-ratelimit-remaining": "29",
+        "x-ratelimit-reset": "1576634376",
         "X-Powered-By": "Profit",
         "ETag": "W/\"37302-nh85Y+R3+lzFKGp4yGL8Da6ify8\"",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains"

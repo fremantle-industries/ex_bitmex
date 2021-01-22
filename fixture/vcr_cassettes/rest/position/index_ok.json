@@ -21,9 +21,9 @@
         "Content-Type": "application/json; charset=utf-8",
         "Content-Length": "3433",
         "Connection": "keep-alive",
-        "X-RateLimit-Limit": "300",
-        "X-RateLimit-Remaining": "299",
-        "X-RateLimit-Reset": "1548458182",
+        "x-ratelimit-limit": "300",
+        "x-ratelimit-remaining": "299",
+        "x-ratelimit-reset": "1548458182",
         "X-Powered-By": "Profit",
         "ETag": "W/\"d69-jCBCddEHTQ+qEan9zGCTLSWOfPI\"",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
