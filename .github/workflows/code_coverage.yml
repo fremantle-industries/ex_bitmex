@@ -24,7 +24,7 @@ jobs:
           elixir-version: ${{matrix.elixir}}
 
       - name: Cache Dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v2.1.4
         with:
           path: deps
           key: deps-elixir-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-${{hashFiles('mix.lock')}}-${{github.ref}}
@@ -33,7 +33,7 @@ jobs:
             deps-elixir-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-${{hashFiles('mix.lock')}}-
 
       - name: Cache Test Build
-        uses: actions/cache@v1
+        uses: actions/cache@v2.1.4
         with:
           path: _build/test
           key: test-build-elixir-${{matrix.elixir}}-otp-${{matrix.otp}}-${{runner.os}}-${{hashFiles('mix.lock')}}-${{github.ref}}
