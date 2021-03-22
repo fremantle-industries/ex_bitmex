@@ -5,7 +5,7 @@ defmodule ExBitmex.Mixfile do
     [
       app: :ex_bitmex,
       version: "0.5.0",
-      elixir: "~> 1.7",
+      elixir: "~> 1.8",
       package: package(),
       start_permanent: Mix.env() == :prod,
       description: description(),
