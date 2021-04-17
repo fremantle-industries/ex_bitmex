@@ -11,7 +11,7 @@ Add the `ex_bitmex` package to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:ex_bitmex, "~> 0.5"}]
+  [{:ex_bitmex, "~> 0.6"}]
 end
 ```
 
