@@ -4,8 +4,8 @@ defmodule ExBitmex.Mixfile do
   def project do
     [
       app: :ex_bitmex,
-      version: "0.6.0",
-      elixir: "~> 1.8",
+      version: "0.6.1",
+      elixir: "~> 1.10",
       package: package(),
       start_permanent: Mix.env() == :prod,
       description: description(),
